@@ -1,2 +1,2 @@
-export { default as Pio } from "./Pio.svelte";
-export * from "./types";
+export { default as Pio } from './Pio.svelte'
+export * from './types'

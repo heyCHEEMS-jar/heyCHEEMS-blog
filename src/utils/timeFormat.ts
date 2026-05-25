@@ -1,4 +1,4 @@
-import { siteConfig } from "../config";
+import { siteConfig } from '../config'
 
 /**
  * Format relative time for diary moments
@@ -7,30 +7,25 @@ import { siteConfig } from "../config";
  * @param hoursAgo text for hours
  * @param daysAgo text for days
  */
-export function formatRelativeTime(
-	dateString: string,
-	minutesAgo: string,
-	hoursAgo: string,
-	daysAgo: string,
-): string {
-	let timeGap = 8; // Default UTC+8
+export function formatRelativeTime(dateString: string, minutesAgo: string, hoursAgo: string, daysAgo: string): string {
+	let timeGap = 8 // Default UTC+8
 	if (siteConfig.timeZone >= -12 && siteConfig.timeZone <= 12) {
-		timeGap = siteConfig.timeZone;
+		timeGap = siteConfig.timeZone
 	}
 
-	const now = new Date();
-	const utc = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
-	const localNow = utc + timeGap * 60 * 60 * 1000;
-	const date = new Date(dateString);
-	const diffInMinutes = Math.floor((localNow - date.getTime()) / (1000 * 60));
+	const now = new Date()
+	const utc = now.getTime() + now.getTimezoneOffset() * 60 * 1000
+	const localNow = utc + timeGap * 60 * 60 * 1000
+	const date = new Date(dateString)
+	const diffInMinutes = Math.floor((localNow - date.getTime()) / (1000 * 60))
 
 	if (diffInMinutes < 60) {
-		return `${diffInMinutes}${minutesAgo}`;
+		return `${diffInMinutes}${minutesAgo}`
 	}
 	if (diffInMinutes < 1440) {
-		const hours = Math.floor(diffInMinutes / 60);
-		return `${hours}${hoursAgo}`;
+		const hours = Math.floor(diffInMinutes / 60)
+		return `${hours}${hoursAgo}`
 	}
-	const days = Math.floor(diffInMinutes / 1440);
-	return `${days}${daysAgo}`;
+	const days = Math.floor(diffInMinutes / 1440)
+	return `${days}${daysAgo}`
 }

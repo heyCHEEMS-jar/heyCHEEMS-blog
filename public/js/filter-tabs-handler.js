@@ -3,67 +3,66 @@
 // FilterTabs renders data-filter-attr and data-filter-value on each button
 // Cards/entries should have a matching data attribute (e.g. data-category, data-type)
 
-(function () {
+;(function () {
 	function initFilterTabs() {
-		var containers = document.querySelectorAll(".filter-tabs");
+		var containers = document.querySelectorAll('.filter-tabs')
 
 		containers.forEach(function (container) {
-			if (container.dataset.initialized) return;
-			container.dataset.initialized = "true";
+			if (container.dataset.initialized) return
+			container.dataset.initialized = 'true'
 
-			var tabs = container.querySelectorAll(".filter-tabs-item");
-			var filterAttr = tabs[0] ? tabs[0].dataset.filterAttr : null;
-			if (!filterAttr) return;
+			var tabs = container.querySelectorAll('.filter-tabs-item')
+			var filterAttr = tabs[0] ? tabs[0].dataset.filterAttr : null
+			if (!filterAttr) return
 
-			var dataSelector = "[data-" + filterAttr + "]";
-			var parent = container.closest(".card-base") || document;
-			var items = parent.querySelectorAll(dataSelector);
-			var noResults = parent.querySelector("#no-results");
+			var dataSelector = '[data-' + filterAttr + ']'
+			var parent = container.closest('.card-base') || document
+			var items = parent.querySelectorAll(dataSelector)
+			var noResults = parent.querySelector('#no-results')
 
-			if (items.length === 0) return;
+			if (items.length === 0) return
 
 			tabs.forEach(function (tab) {
-				tab.addEventListener("click", function () {
+				tab.addEventListener('click', function () {
 					tabs.forEach(function (t) {
-						t.classList.remove("active");
-					});
-					tab.classList.add("active");
+						t.classList.remove('active')
+					})
+					tab.classList.add('active')
 
-					var activeValue = tab.dataset.filterValue || "all";
-					var visibleCount = 0;
+					var activeValue = tab.dataset.filterValue || 'all'
+					var visibleCount = 0
 
 					items.forEach(function (item) {
-						var itemValue = item.dataset[filterAttr];
-						var match =
-							activeValue === "all" || (itemValue && itemValue.split(",").indexOf(activeValue) !== -1);
+						var itemValue = item.dataset[filterAttr]
+						var match = activeValue === 'all' || (itemValue && itemValue.split(',').indexOf(activeValue) !== -1)
 
 						if (match) {
-							item.classList.remove("filtered-out");
-							visibleCount++;
+							item.classList.remove('filtered-out')
+							visibleCount++
 						} else {
-							item.classList.add("filtered-out");
+							item.classList.add('filtered-out')
 						}
-					});
+					})
 
 					if (noResults) {
-						noResults.classList.toggle("hidden", visibleCount > 0);
+						noResults.classList.toggle('hidden', visibleCount > 0)
 					}
-				});
-			});
-		});
+				})
+			})
+		})
 	}
 
 	function onInit() {
-		if (document.querySelector(".filter-tabs")) {
-			initFilterTabs();
+		if (document.querySelector('.filter-tabs')) {
+			initFilterTabs()
 		}
 	}
 
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", onInit);
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', onInit)
 	} else {
-		onInit();
+		onInit()
 	}
 
-	document.addEventListener("astro:page-load", onInit);
-})();
+	document.addEventListener('astro:page-load', onInit)
+})()

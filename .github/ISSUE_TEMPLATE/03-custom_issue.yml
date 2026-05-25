@@ -1,6 +1,6 @@
 name: Custom Issue
 description: Describe your issue here.
-title: "[Other]: "
+title: '[Other]: '
 body:
   - type: textarea
     id: issue-description

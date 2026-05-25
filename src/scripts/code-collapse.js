@@ -1,184 +1,170 @@
 class CodeBlockCollapser {
 	constructor() {
-		this.processedBlocks = new WeakSet();
-		this.observer = null;
-		this.isThemeChanging = false;
-		this.debug = false; // 设置为 true 启用调试日志
-		this.init();
+		this.processedBlocks = new WeakSet()
+		this.observer = null
+		this.isThemeChanging = false
+		this.debug = false // 设置为 true 启用调试日志
+		this.init()
 	}
 
 	log(...args) {
 		if (this.debug) {
-			console.log("[CodeBlockCollapser]", ...args);
+			console.log('[CodeBlockCollapser]', ...args)
 		}
 	}
 
 	init() {
-		this.log("Initializing...");
-		if (document.readyState === "loading") {
-			document.addEventListener("DOMContentLoaded", () => {
-				this.log("DOMContentLoaded - setting up code blocks");
-				this.setupCodeBlocks();
-			});
+		this.log('Initializing...')
+		if (document.readyState === 'loading') {
+			document.addEventListener('DOMContentLoaded', () => {
+				this.log('DOMContentLoaded - setting up code blocks')
+				this.setupCodeBlocks()
+			})
 		} else {
-			this.log("Document already loaded - setting up code blocks");
-			this.setupCodeBlocks();
+			this.log('Document already loaded - setting up code blocks')
+			this.setupCodeBlocks()
 		}
-		this.observePageChanges();
-		this.setupThemeChangeListener();
-		this.setupThemeOptimizerSync();
+		this.observePageChanges()
+		this.setupThemeChangeListener()
+		this.setupThemeOptimizerSync()
 	}
 
 	setupThemeOptimizerSync() {
 		// 与主题优化器同步，确保代码块的隐藏/显示行为一致
-		this.syncWithThemeOptimizer();
+		this.syncWithThemeOptimizer()
 
 		// 监听主题优化器初始化完成事件
-		document.addEventListener("themeOptimizerReady", () => {
-			this.log("Theme optimizer ready, syncing code block behavior");
-			this.syncWithThemeOptimizer();
-		});
+		document.addEventListener('themeOptimizerReady', () => {
+			this.log('Theme optimizer ready, syncing code block behavior')
+			this.syncWithThemeOptimizer()
+		})
 
 		// 监听页面切换事件，确保同步
-		document.addEventListener("swup:pageView", () => {
+		document.addEventListener('swup:pageView', () => {
 			// 延迟同步，确保主题优化器已经处理完代码块
 			setTimeout(() => {
-				this.syncWithThemeOptimizer();
-			}, 150);
-		});
+				this.syncWithThemeOptimizer()
+			}, 150)
+		})
 	}
 
 	syncWithThemeOptimizer() {
 		// 检查主题优化器是否存在
 		if (window.themeOptimizer) {
 			// 获取当前主题优化器的设置
-			const shouldHideDuringTransition =
-				window.themeOptimizer.hideCodeBlocksDuringTransition;
+			const shouldHideDuringTransition = window.themeOptimizer.hideCodeBlocksDuringTransition
 
 			// 应用相同的设置到代码块
-			const codeBlocks = document.querySelectorAll(".expressive-code");
-			codeBlocks.forEach((block) => {
+			const codeBlocks = document.querySelectorAll('.expressive-code')
+			codeBlocks.forEach(block => {
 				if (shouldHideDuringTransition) {
-					block.classList.add("hide-during-transition");
+					block.classList.add('hide-during-transition')
 				} else {
-					block.classList.remove("hide-during-transition");
+					block.classList.remove('hide-during-transition')
 				}
-			});
+			})
 
-			this.log(
-				`Synced with theme optimizer: hide code blocks during transition = ${shouldHideDuringTransition}`,
-			);
+			this.log(`Synced with theme optimizer: hide code blocks during transition = ${shouldHideDuringTransition}`)
 		} else {
 			// 如果主题优化器不存在，应用默认行为
-			const codeBlocks = document.querySelectorAll(".expressive-code");
-			codeBlocks.forEach((block) => {
-				block.classList.add("hide-during-transition");
-			});
+			const codeBlocks = document.querySelectorAll('.expressive-code')
+			codeBlocks.forEach(block => {
+				block.classList.add('hide-during-transition')
+			})
 
-			this.log("Theme optimizer not available, applied default behavior");
+			this.log('Theme optimizer not available, applied default behavior')
 		}
 	}
 
 	setupThemeChangeListener() {
 		// 监听主题切换，在切换期间暂停 observer 和优化性能
-		const themeObserver = new MutationObserver((mutations) => {
+		const themeObserver = new MutationObserver(mutations => {
 			for (const mutation of mutations) {
-				if (
-					mutation.type === "attributes" &&
-					(mutation.attributeName === "class" ||
-						mutation.attributeName === "data-theme")
-				) {
-					const isTransitioning =
-						document.documentElement.classList.contains(
-							"is-theme-transitioning",
-						);
+				if (mutation.type === 'attributes' && (mutation.attributeName === 'class' || mutation.attributeName === 'data-theme')) {
+					const isTransitioning = document.documentElement.classList.contains('is-theme-transitioning')
 
 					if (isTransitioning && !this.isThemeChanging) {
-						this.isThemeChanging = true;
+						this.isThemeChanging = true
 
 						// 断开 observer 以避免在主题切换时进行不必要的检查
 						if (this.observer) {
-							this.observer.disconnect();
+							this.observer.disconnect()
 						}
 
 						// 性能优化：临时禁用代码块的动画和过渡
-						document
-							.querySelectorAll(".expressive-code")
-							.forEach((block) => {
-								block.style.transition = "none";
-							});
+						document.querySelectorAll('.expressive-code').forEach(block => {
+							block.style.transition = 'none'
+						})
 					} else if (!isTransitioning && this.isThemeChanging) {
-						this.isThemeChanging = false;
+						this.isThemeChanging = false
 
 						// 等待主题切换完全结束后再恢复
 						requestAnimationFrame(() => {
 							// 恢复代码块的过渡效果
-							document
-								.querySelectorAll(".expressive-code")
-								.forEach((block) => {
-									block.style.transition = "";
-								});
+							document.querySelectorAll('.expressive-code').forEach(block => {
+								block.style.transition = ''
+							})
 
 							// 重新连接 observer
 							setTimeout(() => {
-								this.observePageChanges();
-							}, 50);
-						});
+								this.observePageChanges()
+							}, 50)
+						})
 					}
-					break;
+					break
 				}
 			}
-		});
+		})
 
 		themeObserver.observe(document.documentElement, {
 			attributes: true,
-			attributeFilter: ["class", "data-theme"],
-		});
+			attributeFilter: ['class', 'data-theme']
+		})
 	}
 
 	setupCodeBlocks() {
 		requestAnimationFrame(() => {
-			const codeBlocks = document.querySelectorAll(".expressive-code");
-			this.log(`Found ${codeBlocks.length} code blocks to process`);
+			const codeBlocks = document.querySelectorAll('.expressive-code')
+			this.log(`Found ${codeBlocks.length} code blocks to process`)
 
 			codeBlocks.forEach((codeBlock, index) => {
 				if (!this.processedBlocks.has(codeBlock)) {
-					this.log(`Enhancing code block ${index + 1}`);
-					this.enhanceCodeBlock(codeBlock);
-					this.processedBlocks.add(codeBlock);
+					this.log(`Enhancing code block ${index + 1}`)
+					this.enhanceCodeBlock(codeBlock)
+					this.processedBlocks.add(codeBlock)
 				} else {
-					this.log(`Code block ${index + 1} already processed`);
+					this.log(`Code block ${index + 1} already processed`)
 				}
-			});
-		});
+			})
+		})
 	}
 
 	enhanceCodeBlock(codeBlock) {
-		const frame = codeBlock.querySelector(".frame");
+		const frame = codeBlock.querySelector('.frame')
 		if (!frame) {
-			this.log("No frame found in code block, skipping");
-			return;
+			this.log('No frame found in code block, skipping')
+			return
 		}
 
-		if (frame.classList.contains("has-title")) {
-			this.log("Code block has title, skipping collapse feature");
-			return;
+		if (frame.classList.contains('has-title')) {
+			this.log('Code block has title, skipping collapse feature')
+			return
 		}
 
-		this.log("Adding collapse feature to code block");
-		codeBlock.classList.add("collapsible", "expanded");
+		this.log('Adding collapse feature to code block')
+		codeBlock.classList.add('collapsible', 'expanded')
 
-		const toggleBtn = this.createToggleButton();
-		frame.appendChild(toggleBtn);
+		const toggleBtn = this.createToggleButton()
+		frame.appendChild(toggleBtn)
 
-		this.bindToggleEvents(codeBlock, toggleBtn);
+		this.bindToggleEvents(codeBlock, toggleBtn)
 	}
 
 	createToggleButton() {
-		const button = document.createElement("button");
-		button.className = "collapse-toggle-btn";
-		button.type = "button";
-		button.setAttribute("aria-label", "折叠/展开代码块");
+		const button = document.createElement('button')
+		button.className = 'collapse-toggle-btn'
+		button.type = 'button'
+		button.setAttribute('aria-label', '折叠/展开代码块')
 
 		button.innerHTML = `
       <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -187,194 +173,177 @@ class CodeBlockCollapser {
           <path fill="currentColor" d="m12 16.172l-4.95-4.95a1 1 0 1 0-1.414 1.414l5.657 5.657a1 1 0 0 0 1.414 0l5.657-5.657a1 1 0 0 0-1.414-1.414z"></path>
         </g>
       </svg>
-    `;
+    `
 
-		return button;
+		return button
 	}
 
 	bindToggleEvents(codeBlock, button) {
-		button.addEventListener("click", (e) => {
-			e.preventDefault();
-			e.stopPropagation();
-			this.toggleCollapse(codeBlock);
-		});
+		button.addEventListener('click', e => {
+			e.preventDefault()
+			e.stopPropagation()
+			this.toggleCollapse(codeBlock)
+		})
 
-		button.addEventListener("keydown", (e) => {
-			if (e.key === "Enter" || e.key === " ") {
-				e.preventDefault();
-				this.toggleCollapse(codeBlock);
+		button.addEventListener('keydown', e => {
+			if (e.key === 'Enter' || e.key === ' ') {
+				e.preventDefault()
+				this.toggleCollapse(codeBlock)
 			}
-		});
+		})
 	}
 
 	toggleCollapse(codeBlock) {
-		const isCollapsed = codeBlock.classList.contains("collapsed");
+		const isCollapsed = codeBlock.classList.contains('collapsed')
 
 		requestAnimationFrame(() => {
 			if (isCollapsed) {
-				codeBlock.classList.remove("collapsed");
-				codeBlock.classList.add("expanded");
+				codeBlock.classList.remove('collapsed')
+				codeBlock.classList.add('expanded')
 			} else {
-				codeBlock.classList.remove("expanded");
-				codeBlock.classList.add("collapsed");
+				codeBlock.classList.remove('expanded')
+				codeBlock.classList.add('collapsed')
 			}
-		});
+		})
 
-		const event = new CustomEvent("codeBlockToggle", {
-			detail: { collapsed: !isCollapsed, element: codeBlock },
-		});
-		document.dispatchEvent(event);
+		const event = new CustomEvent('codeBlockToggle', {
+			detail: { collapsed: !isCollapsed, element: codeBlock }
+		})
+		document.dispatchEvent(event)
 	}
 
 	observePageChanges() {
 		// 如果正在主题切换，不要重新连接
 		if (this.isThemeChanging) {
-			return;
+			return
 		}
 
 		// 断开现有的 observer
 		if (this.observer) {
-			this.observer.disconnect();
+			this.observer.disconnect()
 		}
 
-		let debounceTimer = null;
+		let debounceTimer = null
 
-		this.observer = new MutationObserver((mutations) => {
+		this.observer = new MutationObserver(mutations => {
 			// 如果正在主题切换，忽略所有变化
 			if (this.isThemeChanging) {
-				return;
+				return
 			}
 
-			let shouldReinit = false;
+			let shouldReinit = false
 
 			// 外层循环：遍历所有变动
 			for (const mutation of mutations) {
-				if (
-					mutation.type === "childList" &&
-					mutation.addedNodes.length > 0
-				) {
+				if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
 					// 内层循环：遍历新增节点
 					for (const node of mutation.addedNodes) {
 						// 只检查元素节点 (nodeType 1)
 						if (node.nodeType === Node.ELEMENT_NODE) {
-							if (
-								node.classList.contains("expressive-code") ||
-								(node.getElementsByClassName &&
-									node.getElementsByClassName(
-										"expressive-code",
-									).length > 0)
-							) {
-								shouldReinit = true;
-								break;
+							if (node.classList.contains('expressive-code') || (node.getElementsByClassName && node.getElementsByClassName('expressive-code').length > 0)) {
+								shouldReinit = true
+								break
 							}
 						}
 					}
 				}
 				if (shouldReinit) {
-					break;
+					break
 				}
 			}
 
 			if (shouldReinit) {
-				clearTimeout(debounceTimer);
-				debounceTimer = setTimeout(() => this.setupCodeBlocks(), 30);
+				clearTimeout(debounceTimer)
+				debounceTimer = setTimeout(() => this.setupCodeBlocks(), 30)
 			}
-		});
+		})
 
 		this.observer.observe(document.body, {
 			childList: true,
-			subtree: true,
-		});
+			subtree: true
+		})
 	}
 
 	destroy() {
 		if (this.observer) {
-			this.observer.disconnect();
-			this.observer = null;
+			this.observer.disconnect()
+			this.observer = null
 		}
-		this.processedBlocks = new WeakSet();
+		this.processedBlocks = new WeakSet()
 	}
 
 	// 公共API方法
 	collapseAll() {
-		const allBlocks = document.querySelectorAll(
-			".expressive-code.expanded",
-		);
-		allBlocks.forEach((block) => {
-			this.toggleCollapse(block);
-		});
+		const allBlocks = document.querySelectorAll('.expressive-code.expanded')
+		allBlocks.forEach(block => {
+			this.toggleCollapse(block)
+		})
 	}
 
 	expandAll() {
-		const allBlocks = document.querySelectorAll(
-			".expressive-code.collapsed",
-		);
-		allBlocks.forEach((block) => {
-			this.toggleCollapse(block);
-		});
+		const allBlocks = document.querySelectorAll('.expressive-code.collapsed')
+		allBlocks.forEach(block => {
+			this.toggleCollapse(block)
+		})
 	}
 }
 
-const codeBlockCollapser = new CodeBlockCollapser();
+const codeBlockCollapser = new CodeBlockCollapser()
 
-window.CodeBlockCollapser = CodeBlockCollapser;
-window.codeBlockCollapser = codeBlockCollapser;
+window.CodeBlockCollapser = CodeBlockCollapser
+window.codeBlockCollapser = codeBlockCollapser
 
 // 设置 Swup 钩子的函数
 function setupSwupHooks() {
 	if (window.swup) {
-		codeBlockCollapser.log("Setting up Swup hooks");
+		codeBlockCollapser.log('Setting up Swup hooks')
 
 		// 监听 page:view 事件
-		window.swup.hooks.on("page:view", () => {
-			codeBlockCollapser.log(
-				"Swup page:view event - reinitializing code blocks",
-			);
+		window.swup.hooks.on('page:view', () => {
+			codeBlockCollapser.log('Swup page:view event - reinitializing code blocks')
 			// 页面切换后重置 processedBlocks，确保新页面的代码块被处理
-			codeBlockCollapser.processedBlocks = new WeakSet();
+			codeBlockCollapser.processedBlocks = new WeakSet()
 			setTimeout(() => {
-				codeBlockCollapser.setupCodeBlocks();
-			}, 100);
-		});
+				codeBlockCollapser.setupCodeBlocks()
+			}, 100)
+		})
 
 		// 监听 content:replace 事件（更早触发）
-		window.swup.hooks.on("content:replace", () => {
-			codeBlockCollapser.log(
-				"Swup content:replace event - preparing for reinitialization",
-			);
+		window.swup.hooks.on('content:replace', () => {
+			codeBlockCollapser.log('Swup content:replace event - preparing for reinitialization')
 			// 内容替换时也重置，确保不会因为缓存而跳过处理
-			codeBlockCollapser.processedBlocks = new WeakSet();
+			codeBlockCollapser.processedBlocks = new WeakSet()
 			setTimeout(() => {
-				codeBlockCollapser.setupCodeBlocks();
-			}, 50);
-		});
+				codeBlockCollapser.setupCodeBlocks()
+			}, 50)
+		})
 
-		return true;
+		return true
 	}
-	return false;
+	return false
 }
 
 // 尝试立即设置 Swup 钩子
 if (!setupSwupHooks()) {
 	// 如果 Swup 尚未初始化，等待它加载
-	codeBlockCollapser.log("Swup not ready, waiting for initialization");
+	codeBlockCollapser.log('Swup not ready, waiting for initialization')
 
 	// 监听 swup:enable 事件
-	document.addEventListener("swup:enable", () => {
-		codeBlockCollapser.log("Swup enabled, setting up hooks");
-		setupSwupHooks();
-	});
+	document.addEventListener('swup:enable', () => {
+		codeBlockCollapser.log('Swup enabled, setting up hooks')
+		setupSwupHooks()
+	})
 
 	// 额外的延迟重试机制，确保捕获到 Swup
 	const retryInterval = setInterval(() => {
 		if (setupSwupHooks()) {
-			codeBlockCollapser.log("Swup hooks set up successfully via retry");
-			clearInterval(retryInterval);
+			codeBlockCollapser.log('Swup hooks set up successfully via retry')
+			clearInterval(retryInterval)
 		}
-	}, 100);
+	}, 100)
 
 	// 最多重试 20 次（2 秒）
 	setTimeout(() => {
-		clearInterval(retryInterval);
-	}, 2000);
+		clearInterval(retryInterval)
+	}, 2000)
 }

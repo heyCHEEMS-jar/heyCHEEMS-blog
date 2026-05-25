@@ -1,1 +1,1 @@
-export { default as Profile } from "./Profile.astro";
+export { default as Profile } from './Profile.astro'

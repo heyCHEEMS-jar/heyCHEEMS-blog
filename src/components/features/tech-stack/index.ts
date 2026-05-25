@@ -1,2 +1,2 @@
-export { default as TechStack } from "./TechStack.astro";
-export * from "./types";
+export { default as TechStack } from './TechStack.astro'
+export * from './types'

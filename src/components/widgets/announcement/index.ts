@@ -1,1 +1,1 @@
-export { default as Announcement } from "./Announcement.astro";
+export { default as Announcement } from './Announcement.astro'

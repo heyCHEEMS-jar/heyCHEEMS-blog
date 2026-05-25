@@ -1,2 +1,2 @@
-export { default as SectionTitle } from "./SectionTitle.astro";
-export * from "./types";
+export { default as SectionTitle } from './SectionTitle.astro'
+export * from './types'

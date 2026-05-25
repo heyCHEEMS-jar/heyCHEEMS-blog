@@ -1,1 +1,1 @@
-export { default as MusicSidebarWidget } from "./MusicSidebarWidget.astro";
+export { default as MusicSidebarWidget } from './MusicSidebarWidget.astro'

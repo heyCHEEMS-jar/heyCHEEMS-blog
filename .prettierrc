@@ -1,26 +1,12 @@
 {
-	"plugins": ["prettier-plugin-astro", "prettier-plugin-svelte"],
-
-	"printWidth": 80,
-	"tabWidth": 4,
+	"printWidth": 200,
+	"tabWidth": 2,
 	"useTabs": true,
-
-	"semi": true,
-	"singleQuote": false,
+	"semi": false,
+	"singleQuote": true,
 	"quoteProps": "as-needed",
-	"trailingComma": "all",
+	"trailingComma": "none",
 	"bracketSpacing": true,
-	"arrowParens": "always",
-	"endOfLine": "lf",
-
-	"overrides": [
-		{
-			"files": ["**/*.css"],
-			"options": {
-				"printWidth": 200,
-				"tabWidth": 2,
-				"useTabs": false
-			}
-		}
-	]
+	"arrowParens": "avoid",
+	"endOfLine": "lf"
 }

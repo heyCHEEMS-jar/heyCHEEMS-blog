@@ -1,5 +1,5 @@
 export interface PageHeaderProps {
-	title: string;
-	subtitle?: string;
-	class?: string;
+	title: string
+	subtitle?: string
+	class?: string
 }

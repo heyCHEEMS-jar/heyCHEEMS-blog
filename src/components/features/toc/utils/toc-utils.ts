@@ -2,30 +2,26 @@
  * TOC 组件共享工具函数
  */
 
-import type { HeadingData, TOCConfig, TOCItem } from "../types/toc";
-import { getKatakanaBadge } from "./japanese-katakana";
+import type { HeadingData, TOCConfig, TOCItem } from '../types/toc'
+import { getKatakanaBadge } from './japanese-katakana'
 
 /**
  * 从 DOM 中提取标题数据
  * @param containerSelector - 容器选择器
  * @returns 标题数据数组
  */
-export function extractHeadings(
-	containerSelector = "#post-container",
-): HeadingData[] {
-	const container = document.querySelector(containerSelector);
+export function extractHeadings(containerSelector = '#post-container'): HeadingData[] {
+	const container = document.querySelector(containerSelector)
 	if (!container) {
-		return [];
+		return []
 	}
 
-	const headings = container.querySelectorAll(
-		"h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]",
-	);
-	return Array.from(headings).map((h) => ({
+	const headings = container.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]')
+	return Array.from(headings).map(h => ({
 		id: h.id,
-		text: (h.textContent || "").replace(/#+\s*$/, ""),
-		level: parseInt(h.tagName[1]),
-	}));
+		text: (h.textContent || '').replace(/#+\s*$/, ''),
+		level: parseInt(h.tagName[1])
+	}))
 }
 
 /**
@@ -35,9 +31,9 @@ export function extractHeadings(
  */
 export function getMinLevel(headings: HeadingData[]): number {
 	if (headings.length === 0) {
-		return 1;
+		return 1
 	}
-	return Math.min(...headings.map((h) => h.level));
+	return Math.min(...headings.map(h => h.level))
 }
 
 /**
@@ -46,28 +42,25 @@ export function getMinLevel(headings: HeadingData[]): number {
  * @param config - TOC 配置
  * @returns TOC 条目数组
  */
-export function generateTOCItems(
-	headings: HeadingData[],
-	config: TOCConfig,
-): TOCItem[] {
+export function generateTOCItems(headings: HeadingData[], config: TOCConfig): TOCItem[] {
 	if (headings.length === 0) {
-		return [];
+		return []
 	}
 
-	const minLevel = getMinLevel(headings);
-	const maxDepth = config.depth;
+	const minLevel = getMinLevel(headings)
+	const maxDepth = config.depth
 
-	let h1Count = 0;
+	let h1Count = 0
 
 	return headings
-		.filter((h) => h.level < minLevel + maxDepth)
-		.map((h) => {
-			const depth = h.level - minLevel;
-			let badge: string | undefined;
+		.filter(h => h.level < minLevel + maxDepth)
+		.map(h => {
+			const depth = h.level - minLevel
+			let badge: string | undefined
 
 			if (h.level === minLevel) {
-				badge = getKatakanaBadge(h1Count, config.useJapaneseBadge);
-				h1Count++;
+				badge = getKatakanaBadge(h1Count, config.useJapaneseBadge)
+				h1Count++
 			}
 
 			return {
@@ -75,9 +68,9 @@ export function generateTOCItems(
 				text: h.text,
 				level: h.level,
 				depth,
-				badge,
-			};
-		});
+				badge
+			}
+		})
 }
 
 /**
@@ -86,17 +79,16 @@ export function generateTOCItems(
  * @param offset - 顶部偏移量（用于导航栏）
  */
 export function scrollToHeading(id: string, offset = 80): void {
-	const element = document.getElementById(id);
+	const element = document.getElementById(id)
 	if (!element) {
-		return;
+		return
 	}
 
-	const targetTop =
-		element.getBoundingClientRect().top + window.scrollY - offset;
+	const targetTop = element.getBoundingClientRect().top + window.scrollY - offset
 	window.scrollTo({
 		top: targetTop,
-		behavior: "smooth",
-	});
+		behavior: 'smooth'
+	})
 }
 
 /**
@@ -105,22 +97,19 @@ export function scrollToHeading(id: string, offset = 80): void {
  * @param options - 观察器选项
  * @returns IntersectionObserver 实例
  */
-export function createHeadingObserver(
-	onActiveChange: (id: string) => void,
-	options: { rootMargin?: string; threshold?: number } = {},
-): IntersectionObserver {
-	const { rootMargin = "-80px 0px -80% 0px", threshold = 0 } = options;
+export function createHeadingObserver(onActiveChange: (id: string) => void, options: { rootMargin?: string; threshold?: number } = {}): IntersectionObserver {
+	const { rootMargin = '-80px 0px -80% 0px', threshold = 0 } = options
 
 	return new IntersectionObserver(
-		(entries) => {
-			entries.forEach((entry) => {
+		entries => {
+			entries.forEach(entry => {
 				if (entry.isIntersecting && entry.target.id) {
-					onActiveChange(entry.target.id);
+					onActiveChange(entry.target.id)
 				}
-			});
+			})
 		},
-		{ rootMargin, threshold },
-	);
+		{ rootMargin, threshold }
+	)
 }
 
 /**
@@ -128,13 +117,13 @@ export function createHeadingObserver(
  * @returns TOC 配置
  */
 export function getTOCConfig(): TOCConfig {
-	const siteConfig = window.siteConfig || {};
+	const siteConfig = window.siteConfig || {}
 	return {
 		enable: siteConfig.toc?.enable ?? true,
-		mode: siteConfig.toc?.mode ?? "sidebar",
+		mode: siteConfig.toc?.mode ?? 'sidebar',
 		depth: siteConfig.toc?.depth ?? 3,
-		useJapaneseBadge: siteConfig.toc?.useJapaneseBadge ?? false,
-	};
+		useJapaneseBadge: siteConfig.toc?.useJapaneseBadge ?? false
+	}
 }
 
 /**
@@ -142,11 +131,9 @@ export function getTOCConfig(): TOCConfig {
  * @returns 进度值（0-1）
  */
 export function calculateReadingProgress(): number {
-	const scrollTop = window.scrollY || document.documentElement.scrollTop;
-	const docHeight =
-		document.documentElement.scrollHeight -
-		document.documentElement.clientHeight;
-	return docHeight > 0 ? scrollTop / docHeight : 0;
+	const scrollTop = window.scrollY || document.documentElement.scrollTop
+	const docHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
+	return docHeight > 0 ? scrollTop / docHeight : 0
 }
 
 /**
@@ -155,13 +142,10 @@ export function calculateReadingProgress(): number {
  * @param delay - 延迟时间（毫秒）
  * @returns 防抖后的函数
  */
-export function debounce<T extends (...args: any[]) => any>(
-	fn: T,
-	delay: number,
-): (...args: Parameters<T>) => void {
-	let timeoutId: ReturnType<typeof setTimeout>;
+export function debounce<T extends (...args: any[]) => any>(fn: T, delay: number): (...args: Parameters<T>) => void {
+	let timeoutId: ReturnType<typeof setTimeout>
 	return (...args: Parameters<T>) => {
-		clearTimeout(timeoutId);
-		timeoutId = setTimeout(() => fn(...args), delay);
-	};
+		clearTimeout(timeoutId)
+		timeoutId = setTimeout(() => fn(...args), delay)
+	}
 }

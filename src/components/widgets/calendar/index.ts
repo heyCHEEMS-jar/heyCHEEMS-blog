@@ -1,3 +1,3 @@
-export { default as Calendar } from "./Calendar.svelte";
-export * from "./components";
-export * from "./hooks/useCalendar";
+export { default as Calendar } from './Calendar.svelte'
+export * from './components'
+export * from './hooks/useCalendar'

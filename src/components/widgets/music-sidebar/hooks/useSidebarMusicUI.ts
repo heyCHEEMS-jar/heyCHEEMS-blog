@@ -1,13 +1,13 @@
 export interface SidebarMusicUIState {
-	showPlaylist: boolean;
+	showPlaylist: boolean
 }
 
 export function createSidebarMusicUIState(): SidebarMusicUIState {
 	return {
-		showPlaylist: false,
-	};
+		showPlaylist: false
+	}
 }
 
 export function toggleSidebarPlaylist(state: SidebarMusicUIState) {
-	state.showPlaylist = !state.showPlaylist;
+	state.showPlaylist = !state.showPlaylist
 }

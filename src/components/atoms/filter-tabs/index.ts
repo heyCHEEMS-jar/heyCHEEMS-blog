@@ -1,1 +1,1 @@
-export { default as FilterTabs } from "./FilterTabs.astro";
+export { default as FilterTabs } from './FilterTabs.astro'

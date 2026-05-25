@@ -1,1 +1,1 @@
-export { default as SideBar } from "./SideBar.astro";
+export { default as SideBar } from './SideBar.astro'

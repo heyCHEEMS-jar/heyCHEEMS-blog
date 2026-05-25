@@ -1,2 +1,2 @@
 // Re-export from types directory for backward compatibility
-export * from "./types/calendar";
+export * from './types/calendar'

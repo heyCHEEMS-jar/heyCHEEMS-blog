@@ -1,32 +1,32 @@
 // 设备页面处理脚本
 // 此脚本作为全局脚本加载，不受 Swup 页面切换影响
 
-(() => {
-	if (typeof window.devicesPageState === "undefined") {
+;(() => {
+	if (typeof window.devicesPageState === 'undefined') {
 		window.devicesPageState = {
 			eventListeners: [],
-			mutationObserver: null,
-		};
+			mutationObserver: null
+		}
 	}
 
 	function escapeHtml(value) {
-		return String(value ?? "")
-			.replace(/&/g, "&amp;")
-			.replace(/</g, "&lt;")
-			.replace(/>/g, "&gt;")
-			.replace(/\"/g, "&quot;")
-			.replace(/'/g, "&#39;");
+		return String(value ?? '')
+			.replace(/&/g, '&amp;')
+			.replace(/</g, '&lt;')
+			.replace(/>/g, '&gt;')
+			.replace(/\"/g, '&quot;')
+			.replace(/'/g, '&#39;')
 	}
 
 	function cleanupListeners() {
-		const state = window.devicesPageState;
+		const state = window.devicesPageState
 		for (let i = 0; i < state.eventListeners.length; i++) {
-			const [element, type, handler] = state.eventListeners[i];
+			const [element, type, handler] = state.eventListeners[i]
 			if (element && element.removeEventListener) {
-				element.removeEventListener(type, handler);
+				element.removeEventListener(type, handler)
 			}
 		}
-		state.eventListeners = [];
+		state.eventListeners = []
 	}
 
 	function createDeviceCardHTML(device, index, viewDetailsText) {
@@ -35,7 +35,7 @@
 			escapeHtml(device.image) +
 			'" alt="' +
 			escapeHtml(device.name) +
-			'" class="w-auto h-full max-h-full object-contain group-hover:scale-110 transition-all duration-500 drop-shadow-md relative z-10" loading="lazy"></div></div>';
+			'" class="w-auto h-full max-h-full object-contain group-hover:scale-110 transition-all duration-500 drop-shadow-md relative z-10" loading="lazy"></div></div>'
 
 		const infoSection =
 			'<div class="p-6 pt-4 relative z-10"><div class="flex items-start justify-between mb-3"><h3 class="text-lg font-bold text-black/90 dark:text-white/90 group-hover:text-[var(--primary)] transition-colors duration-300">' +
@@ -46,7 +46,7 @@
 			escapeHtml(device.description) +
 			'</p></div><div class="flex items-center justify-between pt-3 border-t border-[var(--line-divider)] border-dashed opacity-0 group-hover:opacity-100 transition-all duration-300"><span class="text-sm font-medium text-[var(--primary)]">' +
 			escapeHtml(viewDetailsText) +
-			'</span><svg class="w-5 h-5 text-[var(--primary)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg></div></div>';
+			'</span><svg class="w-5 h-5 text-[var(--primary)]" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg></div></div>'
 
 		return (
 			'<a href="' +
@@ -56,154 +56,120 @@
 			'ms; animation: fadeInUp 0.6s cubic-bezier(0.25, 0.1, 0.25, 1) forwards; opacity: 0;">' +
 			imgSection +
 			infoSection +
-			"</a>"
-		);
+			'</a>'
+		)
 	}
 
 	function initDevicesPage() {
-		const brandTabs = document.querySelectorAll(".filter-tag[data-brand]");
-		const devicesContainer = document.getElementById("devices-container");
-		const devicesDataElement = document.getElementById("devices-data");
-		const i18nDataElement = document.getElementById("i18n-data");
+		const brandTabs = document.querySelectorAll('.filter-tag[data-brand]')
+		const devicesContainer = document.getElementById('devices-container')
+		const devicesDataElement = document.getElementById('devices-data')
+		const i18nDataElement = document.getElementById('i18n-data')
 
-		if (
-			!brandTabs.length ||
-			!devicesContainer ||
-			!devicesDataElement ||
-			!i18nDataElement
-		) {
-			return false;
+		if (!brandTabs.length || !devicesContainer || !devicesDataElement || !i18nDataElement) {
+			return false
 		}
 
-		const devicesData = JSON.parse(devicesDataElement.textContent || "{}");
-		const i18nData = JSON.parse(i18nDataElement.textContent || "{}");
+		const devicesData = JSON.parse(devicesDataElement.textContent || '{}')
+		const i18nData = JSON.parse(i18nDataElement.textContent || '{}')
 
-		cleanupListeners();
+		cleanupListeners()
 
-		brandTabs.forEach((tab) => {
+		brandTabs.forEach(tab => {
 			const clickHandler = () => {
-				const brand = tab.dataset.brand;
+				const brand = tab.dataset.brand
 				if (!brand) {
-					return;
+					return
 				}
 
-				brandTabs.forEach((item) => item.classList.remove("active"));
-				tab.classList.add("active");
+				brandTabs.forEach(item => item.classList.remove('active'))
+				tab.classList.add('active')
 
-				const brandDevices = devicesData[brand] || [];
-				devicesContainer.innerHTML = brandDevices
-					.map((device, index) =>
-						createDeviceCardHTML(
-							device,
-							index,
-							i18nData.viewDetails || "",
-						),
-					)
-					.join("");
-			};
+				const brandDevices = devicesData[brand] || []
+				devicesContainer.innerHTML = brandDevices.map((device, index) => createDeviceCardHTML(device, index, i18nData.viewDetails || '')).join('')
+			}
 
-			tab.addEventListener("click", clickHandler);
-			window.devicesPageState.eventListeners.push([
-				tab,
-				"click",
-				clickHandler,
-			]);
-		});
+			tab.addEventListener('click', clickHandler)
+			window.devicesPageState.eventListeners.push([tab, 'click', clickHandler])
+		})
 
-		return true;
+		return true
 	}
 
 	function tryInit(retries) {
-		retries = retries || 0;
+		retries = retries || 0
 		if (initDevicesPage()) {
-			return;
+			return
 		}
 		if (retries < 5) {
 			setTimeout(() => {
-				tryInit(retries + 1);
-			}, 100);
+				tryInit(retries + 1)
+			}, 100)
 		}
 	}
 
 	function setupMutationObserver() {
 		if (window.devicesPageState.mutationObserver) {
-			window.devicesPageState.mutationObserver.disconnect();
+			window.devicesPageState.mutationObserver.disconnect()
 		}
 
-		window.devicesPageState.mutationObserver = new MutationObserver(
-			(mutations) => {
-				let shouldInit = false;
+		window.devicesPageState.mutationObserver = new MutationObserver(mutations => {
+			let shouldInit = false
 
-				for (let i = 0; i < mutations.length; i++) {
-					const mutation = mutations[i];
-					if (
-						!mutation.addedNodes ||
-						mutation.addedNodes.length === 0
-					) {
-						continue;
+			for (let i = 0; i < mutations.length; i++) {
+				const mutation = mutations[i]
+				if (!mutation.addedNodes || mutation.addedNodes.length === 0) {
+					continue
+				}
+
+				for (let j = 0; j < mutation.addedNodes.length; j++) {
+					const node = mutation.addedNodes[j]
+					if (node.nodeType !== 1) {
+						continue
 					}
 
-					for (let j = 0; j < mutation.addedNodes.length; j++) {
-						const node = mutation.addedNodes[j];
-						if (node.nodeType !== 1) {
-							continue;
-						}
-
-						if (
-							node.id === "devices-container" ||
-							node.id === "devices-data" ||
-							(node.querySelector &&
-								(node.querySelector("#devices-container") ||
-									node.querySelector("#devices-data")))
-						) {
-							shouldInit = true;
-							break;
-						}
-					}
-
-					if (shouldInit) {
-						break;
+					if (node.id === 'devices-container' || node.id === 'devices-data' || (node.querySelector && (node.querySelector('#devices-container') || node.querySelector('#devices-data')))) {
+						shouldInit = true
+						break
 					}
 				}
 
 				if (shouldInit) {
-					setTimeout(() => {
-						tryInit();
-					}, 50);
+					break
 				}
-			},
-		);
+			}
+
+			if (shouldInit) {
+				setTimeout(() => {
+					tryInit()
+				}, 50)
+			}
+		})
 
 		window.devicesPageState.mutationObserver.observe(document.body, {
 			childList: true,
-			subtree: true,
-		});
+			subtree: true
+		})
 	}
 
-	if (document.readyState === "loading") {
-		document.addEventListener("DOMContentLoaded", () => {
-			tryInit();
-		});
+	if (document.readyState === 'loading') {
+		document.addEventListener('DOMContentLoaded', () => {
+			tryInit()
+		})
 	} else {
-		tryInit();
+		tryInit()
 	}
 
-	setupMutationObserver();
+	setupMutationObserver()
 
-	const events = [
-		"swup:contentReplaced",
-		"swup:pageView",
-		"astro:page-load",
-		"astro:after-swap",
-		"mizuki:page:loaded",
-	];
+	const events = ['swup:contentReplaced', 'swup:pageView', 'astro:page-load', 'astro:after-swap', 'mizuki:page:loaded']
 
 	for (let i = 0; i < events.length; i++) {
-		const eventName = events[i];
+		const eventName = events[i]
 		document.addEventListener(eventName, () => {
 			setTimeout(() => {
-				tryInit();
-			}, 100);
-		});
+				tryInit()
+			}, 100)
+		})
 	}
-})();
+})()

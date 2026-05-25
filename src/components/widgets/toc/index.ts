@@ -7,4 +7,4 @@
  *
  * 此包装器将在下一个主要版本中删除。
  */
-export { default as TOC } from "./TOC.astro";
+export { default as TOC } from './TOC.astro'

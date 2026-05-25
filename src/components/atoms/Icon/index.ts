@@ -1,2 +1,2 @@
-export { default as Icon } from "./Icon.astro";
-export * from "./types";
+export { default as Icon } from './Icon.astro'
+export * from './types'

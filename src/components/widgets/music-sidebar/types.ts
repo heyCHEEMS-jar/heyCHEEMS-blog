@@ -1,4 +1,4 @@
 export interface SidebarMusicWidgetProps {
-	class?: string;
-	style?: string;
+	class?: string
+	style?: string
 }

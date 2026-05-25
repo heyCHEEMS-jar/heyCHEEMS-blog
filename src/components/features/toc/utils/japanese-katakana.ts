@@ -9,64 +9,64 @@
  */
 export const JAPANESE_KATAKANA = [
 	// あ行
-	"ア",
-	"イ",
-	"ウ",
-	"エ",
-	"オ",
+	'ア',
+	'イ',
+	'ウ',
+	'エ',
+	'オ',
 	// か行
-	"カ",
-	"キ",
-	"ク",
-	"ケ",
-	"コ",
+	'カ',
+	'キ',
+	'ク',
+	'ケ',
+	'コ',
 	// さ行
-	"サ",
-	"シ",
-	"ス",
-	"セ",
-	"ソ",
+	'サ',
+	'シ',
+	'ス',
+	'セ',
+	'ソ',
 	// た行
-	"タ",
-	"チ",
-	"ツ",
-	"テ",
-	"ト",
+	'タ',
+	'チ',
+	'ツ',
+	'テ',
+	'ト',
 	// な行
-	"ナ",
-	"ニ",
-	"ヌ",
-	"ネ",
-	"ノ",
+	'ナ',
+	'ニ',
+	'ヌ',
+	'ネ',
+	'ノ',
 	// は行
-	"ハ",
-	"ヒ",
-	"フ",
-	"ヘ",
-	"ホ",
+	'ハ',
+	'ヒ',
+	'フ',
+	'ヘ',
+	'ホ',
 	// ま行
-	"マ",
-	"ミ",
-	"ム",
-	"メ",
-	"モ",
+	'マ',
+	'ミ',
+	'ム',
+	'メ',
+	'モ',
 	// や行
-	"ヤ",
-	"ユ",
-	"ヨ",
+	'ヤ',
+	'ユ',
+	'ヨ',
 	// ら行
-	"ラ",
-	"リ",
-	"ル",
-	"レ",
-	"ロ",
+	'ラ',
+	'リ',
+	'ル',
+	'レ',
+	'ロ',
 	// わ行
-	"ワ",
-	"ヲ",
-	"ン",
-] as const;
+	'ワ',
+	'ヲ',
+	'ン'
+] as const
 
-export type JapaneseKatakanaChar = (typeof JAPANESE_KATAKANA)[number];
+export type JapaneseKatakanaChar = (typeof JAPANESE_KATAKANA)[number]
 
 /**
  * 获取 TOC 徽章文本
@@ -76,12 +76,12 @@ export type JapaneseKatakanaChar = (typeof JAPANESE_KATAKANA)[number];
  */
 export function getKatakanaBadge(index: number, useJapanese: boolean): string {
 	if (useJapanese && index < JAPANESE_KATAKANA.length) {
-		return JAPANESE_KATAKANA[index];
+		return JAPANESE_KATAKANA[index]
 	}
-	return (index + 1).toString();
+	return (index + 1).toString()
 }
 
 /**
  * 获取可用的日语字符数量
  */
-export const KATAKANA_COUNT = JAPANESE_KATAKANA.length;
+export const KATAKANA_COUNT = JAPANESE_KATAKANA.length

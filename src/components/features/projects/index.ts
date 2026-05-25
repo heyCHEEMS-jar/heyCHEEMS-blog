@@ -1,2 +1,2 @@
-export { default as ProjectCard } from "./ProjectCard.astro";
-export * from "./types";
+export { default as ProjectCard } from './ProjectCard.astro'
+export * from './types'

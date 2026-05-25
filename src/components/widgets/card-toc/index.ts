@@ -1,1 +1,1 @@
-export { default as CardTOC } from "./CardTOC.astro";
+export { default as CardTOC } from './CardTOC.astro'

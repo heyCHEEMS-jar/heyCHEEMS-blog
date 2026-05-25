@@ -1,1 +1,1 @@
-export { default as Tags } from "./Tags.astro";
+export { default as Tags } from './Tags.astro'

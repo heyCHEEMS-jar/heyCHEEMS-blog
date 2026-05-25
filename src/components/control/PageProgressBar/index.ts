@@ -1,1 +1,1 @@
-export { default as PageProgressBar } from "./PageProgressBar.astro";
+export { default as PageProgressBar } from './PageProgressBar.astro'

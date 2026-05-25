@@ -1,7 +1,7 @@
 export interface PasswordProtectionProps {
-	encryptedContent: string;
+	encryptedContent: string
 }
 
 export interface EncryptorProps {
-	password: string | number;
+	password: string | number
 }

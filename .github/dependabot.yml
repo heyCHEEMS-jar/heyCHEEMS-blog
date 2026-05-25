@@ -1,22 +1,22 @@
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: 'npm'
+    directory: '/'
     schedule:
-      interval: "monthly"
+      interval: 'monthly'
     groups:
       patch-updates:
         patterns:
-          - "*"
+          - '*'
         update-types:
-          - "patch"
+          - 'patch'
       minor-updates:
         patterns:
-          - "*"
+          - '*'
         update-types:
-          - "minor"
+          - 'minor'
     pull-request-branch-name:
-      separator: "-"
+      separator: '-'
     ignore:
-      - dependency-name: "*"
-        update-types: ["version-update:semver-major"]
+      - dependency-name: '*'
+        update-types: ['version-update:semver-major']
