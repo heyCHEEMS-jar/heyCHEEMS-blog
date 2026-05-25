@@ -1,0 +1,18 @@
+{
+  "mode": "",
+  "title": "未命名相册",
+  "hidden": false,
+  "description": "",
+  "date": "",
+  "location": "",
+  "tags": [],
+  "layout": "grid",
+  "columns": 3,
+  "cover": "",
+  "photos": [
+    {
+      "src": "",
+      "alt": ""
+    }
+  ]
+}
