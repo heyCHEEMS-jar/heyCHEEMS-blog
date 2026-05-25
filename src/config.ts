@@ -466,8 +466,8 @@ export const profileConfig: ProfileConfig = {
 	// 相对于 /src 目录。如果以 '/' 开头，则相对于 /public 目录
 	avatar: 'assets/images/avatar.webp',
 
-	name: 'まつざか ゆき',
-	bio: '世界は大きい、君は行かなければならない',
+	name: 'heyCHEEMS',
+	bio: 'EL PSY CONGROO 欢迎来到CHEEMS的小窝~',
 
 	typewriter: {
 		// 启用个人简介打字机效果
@@ -581,10 +581,10 @@ export const shareConfig: ShareConfig = {
 
 export const announcementConfig: AnnouncementConfig = {
 	// 公告标题，填空使用i18n字符串Key.announcement
-	title: '',
+	title: 'EL PSY CONGROO',
 
 	// 公告内容
-	content: 'ブログへようこそ！これはサンプルの告知です',
+	content: '欢迎来到CHEEMS的小窝~',
 
 	// 允许用户关闭公告
 	closable: true,
@@ -743,10 +743,10 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
 
 export const sakuraConfig: SakuraConfig = {
 	// 默认关闭樱花特效
-	enable: false,
+	enable: true,
 
 	// 樱花数量
-	sakuraNum: 21,
+	sakuraNum: 8,
 
 	// 樱花越界限制次数，-1为无限循环
 	limitTimes: -1,
@@ -792,7 +792,7 @@ export const sakuraConfig: SakuraConfig = {
 	},
 
 	// 层级，确保樱花在合适的层级显示
-	zIndex: 100
+	zIndex: 1
 }
 
 // Pio 看板娘配置
