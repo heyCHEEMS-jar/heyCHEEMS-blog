@@ -170,7 +170,7 @@ export const skillsData: Skill[] = [{
   level: 'intermediate',
 
   experience: {
-    years: 3,
+    years: 4,
     months: 6
   },
 
