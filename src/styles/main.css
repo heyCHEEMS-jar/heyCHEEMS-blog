@@ -48,6 +48,13 @@ html {
 	scroll-behavior: smooth;
 	/* 现代浏览器：为滚动条预留稳定空间 */
 	scrollbar-gutter: stable;
+	/* 自定义鼠标 */
+	cursor: url('/assets/cursor/pointer.cur'), auto;
+}
+
+a,
+button {
+	cursor: url('/assets/cursor/link.cur'), pointer;
 }
 
 /* 页面顶部渐变高光效果 */
