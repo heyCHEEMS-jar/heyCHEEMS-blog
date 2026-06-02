@@ -66,7 +66,7 @@
 		gap: 0.75rem;
 		padding: 0.5rem;
 		border-radius: 0.75rem;
-		cursor: pointer;
+		cursor: var(--cursor-pointer);
 		transition:
 			background-color 180ms ease,
 			transform 180ms ease;

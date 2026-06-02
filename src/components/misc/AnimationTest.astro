@@ -43,7 +43,7 @@
 		color: white;
 		border: none;
 		border-radius: 4px;
-		cursor: pointer;
+		cursor: var(--cursor-pointer);
 		font-size: 0.875rem;
 		transition: all 0.2s ease;
 	}
@@ -61,48 +61,48 @@
 <script is:inline>
 	// 动画测试函数
 	function testSlideIn() {
-		const content = document.getElementById("test-content");
+		const content = document.getElementById('test-content')
 		if (!content) {
-			return;
+			return
 		}
 
-		content.className = "test-content transition-slide-in";
-		content.offsetHeight; // 强制重排
+		content.className = 'test-content transition-slide-in'
+		content.offsetHeight // 强制重排
 
 		setTimeout(() => {
-			content.classList.add("is-active");
-		}, 50);
+			content.classList.add('is-active')
+		}, 50)
 	}
 
 	function testSlideOut() {
-		const content = document.getElementById("test-content");
+		const content = document.getElementById('test-content')
 		if (!content) {
-			return;
+			return
 		}
 
-		content.className = "test-content transition-slide-out is-active";
+		content.className = 'test-content transition-slide-out is-active'
 
 		setTimeout(() => {
-			content.classList.add("is-leaving");
-		}, 50);
+			content.classList.add('is-leaving')
+		}, 50)
 	}
 
 	function resetAnimation() {
-		const content = document.getElementById("test-content");
+		const content = document.getElementById('test-content')
 		if (!content) {
-			return;
+			return
 		}
 
-		content.className = "test-content transition-slide-in is-active";
+		content.className = 'test-content transition-slide-in is-active'
 	}
 
 	// 暴露函数给全局作用域以便HTML中的onclick可以调用
-	window.testSlideIn = testSlideIn;
-	window.testSlideOut = testSlideOut;
-	window.resetAnimation = resetAnimation;
+	window.testSlideIn = testSlideIn
+	window.testSlideOut = testSlideOut
+	window.resetAnimation = resetAnimation
 
 	// 页面加载时自动触发滑入动画
-	document.addEventListener("DOMContentLoaded", () => {
-		setTimeout(testSlideIn, 300);
-	});
+	document.addEventListener('DOMContentLoaded', () => {
+		setTimeout(testSlideIn, 300)
+	})
 </script>

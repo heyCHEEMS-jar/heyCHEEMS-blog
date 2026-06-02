@@ -8,7 +8,7 @@
 		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"[astro]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
+		"editor.defaultFormatter": "astro-build.astro-vscode"
 	},
 	"[svelte]": {
 		"editor.defaultFormatter": "esbenp.prettier-vscode"

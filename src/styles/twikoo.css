@@ -169,7 +169,7 @@ Make the emoji component display correctly when there are too many emoji packs
 .tk-admin,
 .tk-delete,
 .tk-edit {
-	cursor: pointer;
+	cursor: var(--cursor-pointer);
 	transition: all 0.2s ease;
 }
 

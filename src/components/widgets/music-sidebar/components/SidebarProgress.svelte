@@ -69,7 +69,7 @@
 			var(--content-meta) 20%
 		);
 		overflow: hidden;
-		cursor: pointer;
+		cursor: var(--cursor-pointer);
 	}
 
 	.sidebar-progress-fill {

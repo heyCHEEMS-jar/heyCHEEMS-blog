@@ -63,7 +63,7 @@
 		padding: 0.25rem;
 		border: 1px solid rgba(148, 163, 184, 0.45);
 		border-radius: 1rem;
-		cursor: pointer;
+		cursor: var(--cursor-pointer);
 		color: var(--primary);
 		pointer-events: auto;
 		transition:
