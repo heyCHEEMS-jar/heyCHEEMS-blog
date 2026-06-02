@@ -55,7 +55,7 @@
 		padding-left: 0.5rem;
 		display: flex;
 		align-items: center;
-		cursor: pointer;
+		cursor: var(--cursor-pointer);
 		border: none;
 		color: inherit;
 	}

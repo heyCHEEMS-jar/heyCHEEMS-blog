@@ -27,7 +27,7 @@
 		color: var(--btn-content);
 		transition: all 0.2s ease;
 		text-decoration: none;
-		cursor: pointer;
+		cursor: var(--cursor-pointer);
 	}
 
 	.tag-chip:hover {

@@ -210,7 +210,7 @@
 			var(--content-meta) 20%
 		);
 		overflow: hidden;
-		cursor: pointer;
+		cursor: var(--cursor-pointer);
 		flex-shrink: 0;
 		transition: height 150ms ease;
 	}

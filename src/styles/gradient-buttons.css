@@ -11,7 +11,7 @@
 	font-size: 0.875rem;
 	transition: all 0.3s ease;
 	border: none;
-	cursor: pointer;
+	cursor: var(--cursor-pointer);
 	text-decoration: none;
 	gap: 0.5rem;
 	white-space: nowrap;

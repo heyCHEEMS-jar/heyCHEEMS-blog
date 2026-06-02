@@ -219,7 +219,7 @@
 		background: var(--primary);
 		color: white;
 		border: none;
-		cursor: pointer;
+		cursor: var(--cursor-pointer);
 		transition:
 			opacity 0.2s,
 			transform 0.1s;

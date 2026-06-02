@@ -24,7 +24,7 @@
 	width: 3em;
 	height: 3em;
 	display: none;
-	cursor: pointer;
+	cursor: var(--cursor-pointer);
 	position: absolute;
 	border-radius: 3em;
 	border: 3px solid #fff;
@@ -79,7 +79,7 @@
 	width: 1.5em;
 	height: 1.5em;
 	display: block;
-	cursor: pointer;
+	cursor: var(--cursor-pointer); 
 	text-align: center;
 	border-radius: 66%;
 	margin-bottom: 0.5em;

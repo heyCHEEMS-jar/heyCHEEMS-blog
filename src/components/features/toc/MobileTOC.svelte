@@ -350,7 +350,7 @@
 		transition: all 0.2s ease;
 		border: none;
 		background: transparent;
-		cursor: pointer;
+		cursor: var(--cursor-pointer);
 		color: rgba(0, 0, 0, 0.75);
 		font-size: 0.9rem;
 		line-height: 1.4;
@@ -459,7 +459,7 @@
 		transition: all 0.2s ease;
 		border: 1px solid var(--line-color);
 		background: transparent;
-		cursor: pointer;
+		cursor: var(--cursor-pointer);
 	}
 
 	.post-item:hover {
