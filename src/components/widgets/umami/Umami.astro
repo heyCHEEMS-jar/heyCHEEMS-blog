@@ -1,0 +1,37 @@
+---
+import WidgetLayout from '../common/WidgetLayout.astro'
+
+interface Props {
+	class?: string
+	style?: string
+	title?: string
+}
+
+const className = Astro.props.class
+const style = Astro.props.style
+const title = Astro.props.title || '访问统计'
+
+const UMAMI_SHARE_URL = 'https://cloud.umami.is/share/6jMN15DEsqo2zec9'
+const UMAMI_EMBED_URL = `${UMAMI_SHARE_URL}?embed=true`
+---
+
+<WidgetLayout name={title} id="visitor-stats" class={className} style={style}>
+	<div class="space-y-2 text-sm">
+		<div class="w-full h-18 overflow-hidden rounded-md relative bg-neutral-50 dark:bg-neutral-900/50">
+			<iframe src={UMAMI_EMBED_URL} class="absolute -top-17.5 -left-35 w-300 h-100 border-0 scale-[0.5] origin-top-left pointer-events-none" loading="lazy" scrolling="no"></iframe>
+		</div>
+
+		<div class="pt-2 border-t border-neutral-200 dark:border-neutral-700 mt-2">
+			<a
+				href={UMAMI_SHARE_URL}
+				target="_blank"
+				class="text-xs text-neutral-500 dark:text-neutral-400 hover:text-(--accent-color) dark:hover:text-white transition-colors flex items-center justify-end gap-1 group"
+			>
+				<span>查看详细统计</span>
+				<svg class="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+				</svg>
+			</a>
+		</div>
+	</div>
+</WidgetLayout>

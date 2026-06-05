@@ -152,6 +152,7 @@ export interface SiteConfig {
 	favicon: Favicon[]
 	showLastModified: boolean // 控制"上次编辑"卡片显示的开关
 	pageProgressBar?: PageProgressBarConfig // 页面顶部进度条配置
+	umami?: UmamiConfig // Umami 统计配置
 	thirdPartyAnalytics?: ThirdPartyAnalyticsConfig // 第三方统计配置
 }
 
@@ -332,6 +333,7 @@ export type WidgetComponentType =
 	| 'pio' // 添加 pio 组件类型
 	| 'site-stats' // 站点统计组件
 	| 'calendar' // 日历组件
+	| 'umami'
 	| 'custom'
 
 export interface WidgetComponentConfig {
@@ -469,6 +471,15 @@ export interface PageProgressBarConfig {
 	enable: boolean // 是否启用页面顶部进度条
 	height?: number // 进度条高度，默认 3px
 	duration?: number // 动画时长，默认 8000ms
+}
+
+/**
+ * Umami 统计配置
+ */
+export interface UmamiConfig {
+	websiteId: string // Umami 网站 ID
+	apiUrl: string // Umami API 地址（例如 https://cloud.umami.is）
+	apiKey?: string // Umami API 密钥（可选）
 }
 
 /**
