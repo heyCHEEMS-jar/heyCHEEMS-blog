@@ -71,11 +71,11 @@ export const skillsData: Skill[] = [{
   description: '一款开源操作系统，深受服务器部署与开发环境的青睐。',
   icon: 'logos:linux-tux',
   category: 'tools',
-  level: 'intermediate',
+  level: 'beginner',
 
   experience: {
-    years: 2,
-    months: 0
+    years: 0,
+    months: 6
   },
 
   projects: [],
