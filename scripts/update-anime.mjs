@@ -23,7 +23,7 @@ function runScript(scriptPath) {
 	return new Promise((resolve, reject) => {
 		const script = spawn('node', [scriptPath], {
 			stdio: 'inherit',
-			shell: true
+			shell: false
 		})
 
 		script.on('close', code => {

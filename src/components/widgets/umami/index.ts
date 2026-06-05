@@ -1,1 +1,1 @@
-export { default as Unami } from './Unami.astro'
+export { default as Umami } from './Umami.astro'
