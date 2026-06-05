@@ -15,33 +15,47 @@ const UMAMI_SHARE_URL = 'https://cloud.umami.is/share/6jMN15DEsqo2zec9'
 ---
 
 <WidgetLayout name={title} id="visitor-stats" class={className} style={style}>
-	<div class="space-y-2 text-sm">
-		<!-- 不蒜子统计 -->
-		<div class="space-y-1.5">
-			<div class="flex justify-between items-center text-neutral-600 dark:text-neutral-400">
-				<span class="whitespace-nowrap">访问数</span>&nbsp;
-				<span class="whitespace-nowrap">(今)</span>
-				<span id="busuanzi_today_pv" class="font-medium text-neutral-900 dark:text-white"></span>
-				<span>/</span>
-				<span id="busuanzi_site_pv" class="font-medium text-neutral-900 dark:text-white"></span>
+	<div class="space-y-4 text-sm select-none">
+		<div class="grid grid-cols-1 gap-2.5">
+			<div class="group/item flex items-center justify-between p-2 rounded-xl transition-all duration-300 hover:bg-neutral-50 dark:hover:bg-neutral-800/40">
+				<div class="flex items-center gap-2">
+					<div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+					<div class="flex items-baseline gap-1.5">
+						<span class="text-neutral-600 dark:text-neutral-300 font-medium whitespace-nowrap">访问量</span>
+						<span class="text-[10px] uppercase tracking-wider text-neutral-400 dark:text-neutral-500 font-bold bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded-md">PV</span>
+					</div>
+				</div>
+				<div class="flex items-baseline font-mono gap-1">
+					<span id="busuanzi_today_pv" class="text-sm font-bold text-emerald-600 dark:text-emerald-400 tabular-nums text-center transition-all duration-500 animate-pulse-once">-</span>
+					<span class="text-neutral-300 dark:text-neutral-600 text-xs font-light">/</span>
+					<span id="busuanzi_site_pv" class="text-sm font-semibold text-neutral-500 dark:text-neutral-400 tabular-nums">-</span>
+				</div>
 			</div>
-			<div class="flex justify-between items-center text-neutral-600 dark:text-neutral-400">
-				<span class="whitespace-nowrap">访客数 </span>&nbsp;
-				<span class="whitespace-nowrap">(今)</span>
-				<span id="busuanzi_today_uv" class="font-medium text-neutral-900 dark:text-white"></span>
-				<span>/</span>
-				<span id="busuanzi_site_uv" class="font-medium text-neutral-900 dark:text-white"></span>
+
+			<div class="group/item flex items-center justify-between p-2 rounded-xl transition-all duration-300 hover:bg-neutral-50 dark:hover:bg-neutral-800/40">
+				<div class="flex items-center gap-2">
+					<div class="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]"></div>
+					<div class="flex items-baseline gap-1.5">
+						<span class="text-neutral-600 dark:text-neutral-300 font-medium whitespace-nowrap">访客数</span>
+						<span class="text-[10px] uppercase tracking-wider text-neutral-400 dark:text-neutral-500 font-bold bg-neutral-100 dark:bg-neutral-800 px-1.5 py-0.5 rounded-md">UV</span>
+					</div>
+				</div>
+				<div class="flex items-baseline font-mono gap-1">
+					<span id="busuanzi_today_uv" class="text-sm font-bold text-blue-600 dark:text-blue-400 tabular-nums text-center transition-all duration-500 animate-pulse-once">-</span>
+					<span class="text-neutral-300 dark:text-neutral-600 text-xs font-light">/</span>
+					<span id="busuanzi_site_uv" class="text-sm font-semibold text-neutral-500 dark:text-neutral-400 tabular-nums">-</span>
+				</div>
 			</div>
 		</div>
 
-		<div class="pt-2 border-t border-neutral-200 dark:border-neutral-700 mt-2">
+		<div class="pt-3 border-t border-neutral-100 dark:border-neutral-800/60 mt-1">
 			<a
 				href={UMAMI_SHARE_URL}
 				target="_blank"
-				class="text-xs text-neutral-500 dark:text-neutral-400 hover:text-(--accent-color) dark:hover:text-white transition-colors flex items-center justify-end gap-1 group"
+				class="text-xs text-neutral-400 dark:text-neutral-500 hover:text-(--accent-color) dark:hover:text-emerald-400 transition-all duration-300 flex items-center justify-end gap-1 group/btn"
 			>
-				<span>查看详细统计</span>
-				<svg class="w-3 h-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<span class="relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-px after:bg-current after:transition-all after:duration-300 group-hover/btn:after:w-full">查看详细看板</span>
+				<svg class="w-3 h-3 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
 				</svg>
 			</a>
@@ -49,5 +63,5 @@ const UMAMI_SHARE_URL = 'https://cloud.umami.is/share/6jMN15DEsqo2zec9'
 	</div>
 </WidgetLayout>
 
-<!-- 加载不蒜子脚本 -->
+<!-- 不蒜子脚本 -->
 <script is:inline src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.abbr.min.js" defer></script>
