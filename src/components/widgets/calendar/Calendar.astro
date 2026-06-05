@@ -1,16 +1,16 @@
 ---
-import { siteConfig } from "../../../config";
-import I18nKey from "../../../i18n/i18nKey";
-import { i18n } from "../../../i18n/translation";
-import WidgetLayout from "../common/WidgetLayout.astro";
-import CalendarWidget from "./Calendar.svelte";
+import { siteConfig } from '../../../config'
+import I18nKey from '../../../i18n/i18nKey'
+import { i18n } from '../../../i18n/translation'
+import WidgetLayout from '../common/WidgetLayout.astro'
+import CalendarWidget from './Calendar.svelte'
 
 interface Props {
-	class?: string;
-	style?: string;
+	class?: string
+	style?: string
 }
 
-const { class: className, style } = Astro.props;
+const { class: className, style } = Astro.props
 
 const monthNames = [
 	i18n(I18nKey.calendarJanuary),
@@ -24,8 +24,8 @@ const monthNames = [
 	i18n(I18nKey.calendarSeptember),
 	i18n(I18nKey.calendarOctober),
 	i18n(I18nKey.calendarNovember),
-	i18n(I18nKey.calendarDecember),
-];
+	i18n(I18nKey.calendarDecember)
+]
 
 const weekDays = [
 	i18n(I18nKey.calendarMonday),
@@ -34,17 +34,13 @@ const weekDays = [
 	i18n(I18nKey.calendarThursday),
 	i18n(I18nKey.calendarFriday),
 	i18n(I18nKey.calendarSaturday),
-	i18n(I18nKey.calendarSunday),
-];
+	i18n(I18nKey.calendarSunday)
+]
 
-const isChinese = siteConfig.lang.startsWith("zh");
-const yearSuffix = isChinese ? "年" : " ";
+const isChinese = siteConfig.lang.startsWith('zh')
+const yearSuffix = isChinese ? '年' : ' '
 ---
 
-<WidgetLayout
-	id="calendar-widget"
-	class={`hidden md:block ${className}`}
-	style={style}
->
+<WidgetLayout id="calendar-widget" class={`hidden md:block ${className}`} style={style}>
 	<CalendarWidget client:visible {monthNames} {weekDays} {yearSuffix} />
 </WidgetLayout>

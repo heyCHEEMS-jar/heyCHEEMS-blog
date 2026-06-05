@@ -182,7 +182,6 @@ function triggerImageLoadEvents(): void {
 			})
 		}
 	})
-
 	;[0, 100, 300, 500, 1000, 2000].forEach(delay => {
 		setTimeout(() => {
 			window.dispatchEvent(new Event('scroll'))

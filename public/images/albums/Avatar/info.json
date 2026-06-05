@@ -1,13 +1,11 @@
 {
-  "mode": "",
-  "hidden": false,
-  "title": "头像",
-  "description": "",
-  "date": "2026-05-25",
-  "location": "",
-  "tags": [
-    "头像"
-  ],
-  "layout": "masonry",
-  "columns": 3
+	"mode": "",
+	"hidden": false,
+	"title": "头像",
+	"description": "",
+	"date": "2026-05-25",
+	"location": "",
+	"tags": ["头像"],
+	"layout": "masonry",
+	"columns": 3
 }
