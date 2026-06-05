@@ -12,13 +12,26 @@ const style = Astro.props.style
 const title = Astro.props.title || '访问统计'
 
 const UMAMI_SHARE_URL = 'https://cloud.umami.is/share/6jMN15DEsqo2zec9'
-const UMAMI_EMBED_URL = `${UMAMI_SHARE_URL}?embed=true`
 ---
 
 <WidgetLayout name={title} id="visitor-stats" class={className} style={style}>
 	<div class="space-y-2 text-sm">
-		<div class="w-full h-18 overflow-hidden rounded-md relative bg-neutral-50 dark:bg-neutral-900/50">
-			<iframe src={UMAMI_EMBED_URL} class="absolute -top-17.5 -left-35 w-300 h-100 border-0 scale-[0.5] origin-top-left pointer-events-none" loading="lazy" scrolling="no"></iframe>
+		<!-- 不蒜子统计 -->
+		<div class="space-y-1.5">
+			<div class="flex justify-between items-center text-neutral-600 dark:text-neutral-400">
+				<span class="whitespace-nowrap">访问数</span>&nbsp;
+				<span class="whitespace-nowrap">(今)</span>
+				<span id="busuanzi_today_pv" class="font-medium text-neutral-900 dark:text-white"></span>
+				<span>/</span>
+				<span id="busuanzi_site_pv" class="font-medium text-neutral-900 dark:text-white"></span>
+			</div>
+			<div class="flex justify-between items-center text-neutral-600 dark:text-neutral-400">
+				<span class="whitespace-nowrap">访客数 </span>&nbsp;
+				<span class="whitespace-nowrap">(今)</span>
+				<span id="busuanzi_today_uv" class="font-medium text-neutral-900 dark:text-white"></span>
+				<span>/</span>
+				<span id="busuanzi_site_uv" class="font-medium text-neutral-900 dark:text-white"></span>
+			</div>
 		</div>
 
 		<div class="pt-2 border-t border-neutral-200 dark:border-neutral-700 mt-2">
@@ -35,3 +48,6 @@ const UMAMI_EMBED_URL = `${UMAMI_SHARE_URL}?embed=true`
 		</div>
 	</div>
 </WidgetLayout>
+
+<!-- 加载不蒜子脚本 -->
+<script is:inline src="//cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.abbr.min.js" defer></script>
