@@ -38,9 +38,6 @@ const {
 	configHue,
 } = Astro.props;
 
-// 关键词
-const keywords = siteConfig.keywords;
-
 // Favicons
 const favicons: Favicon[] =
 	siteConfig.favicon.length > 0 ? siteConfig.favicon : defaultFavicons;
@@ -49,13 +46,7 @@ const favicons: Favicon[] =
 <!-- SEO Meta Tags -->
 <title>{title}</title>
 <meta name="description" content={description || title} />
-{
-	keywords && keywords.length > 0 && (
-		<meta name="keywords" content={keywords.join(", ")} />
-	)
-}
 <meta name="author" content={profileConfig.name} />
-<link rel="canonical" href={Astro.url} />
 
 <!-- Open Graph Tags -->
 <meta property="og:site_name" content={siteConfig.title} />
