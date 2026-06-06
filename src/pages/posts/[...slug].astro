@@ -176,13 +176,27 @@ const jsonLd = {
 	author: {
 		"@type": "Person",
 		name: profileConfig.name,
-		url: Astro.site,
+		url: siteConfig.siteURL,
+	},
+	publisher: {
+		"@type": "WebSite",
+		name: siteConfig.title,
+		url: siteConfig.siteURL,
 	},
 	datePublished: formatDateToYYYYMMDD(entry.data.published),
+	dateModified: entry.data.updated ? formatDateToYYYYMMDD(entry.data.updated) : formatDateToYYYYMMDD(entry.data.published),
 	inLanguage: entry.data.lang
 		? entry.data.lang.replace("_", "-")
 		: siteConfig.lang.replace("_", "-"),
-	// TODO include cover image here
+	mainEntityOfPage: {
+		"@type": "WebPage",
+		"@id": Astro.url.toString()
+	},
+	...(posterCoverUrl && {
+		image: [posterCoverUrl]
+	}),
+	wordCount: remarkPluginFrontmatter.words,
+	timeRequired: `PT${remarkPluginFrontmatter.minutes}M`
 };
 ---
 

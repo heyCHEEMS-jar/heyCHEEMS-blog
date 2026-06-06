@@ -1,0 +1,8 @@
+# robots.txt for CHEEMS的小窝
+# https://mizuki.heycheems.top/
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: http://mizuki.heycheems.top/sitemap-index.xml
