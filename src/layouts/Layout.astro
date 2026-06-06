@@ -3,6 +3,7 @@ import ConfigCarrier from '@components/misc/ConfigCarrier.astro'
 import MusicPlayer from '@components/widgets/music-player/MusicPlayer.svelte'
 import Pio from '@components/features/pio/Pio.svelte' // 使用 Svelte 版本的 Pio 组件
 import { PageProgressBar } from '@components/control/PageProgressBar'
+import JsonLd from '@components/features/posts/JsonLd.astro'
 import { pioConfig, profileConfig, siteConfig } from '@/config'
 
 const BANNER_HEIGHT = 35
@@ -144,7 +145,27 @@ if (siteConfig.font) {
 		<AnalyticsScripts thirdPartyAnalytics={siteConfig.thirdPartyAnalytics} />
 
 		<!-- SEO Meta Tags, Open Graph, Twitter Card, Favicons, Theme Init -->
-		<HeadTags title={pageTitle} description={description} ogImageUrl={ogImageUrl} setOGTypeArticle={setOGTypeArticle} configHue={configHue} />
+	<HeadTags title={pageTitle} description={description} ogImageUrl={ogImageUrl} setOGTypeArticle={setOGTypeArticle} configHue={configHue} />
+
+	<!-- Global JSON-LD Structured Data -->
+	<JsonLd
+		data={{
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"name": siteConfig.title,
+			"description": siteConfig.subtitle,
+			"url": siteConfig.siteURL,
+			"author": {
+				"@type": "Person",
+				"name": profileConfig.name
+			},
+			"potentialAction": {
+				"@type": "SearchAction",
+				"target": `${siteConfig.siteURL}search?q={search_term_string}`,
+				"query-input": "required name=search_term_string"
+			}
+		}}
+	/>
 
 		<!-- defines global css variables. This will be applied to <html> <body> and some other elements idk why -->
 		<slot name="head" />
