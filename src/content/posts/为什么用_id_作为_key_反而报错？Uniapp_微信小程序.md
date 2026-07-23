@@ -1,5 +1,6 @@
 ---
 title: 为什么用 id 作为 key 反而报错？Uniapp 微信小程序
+permalink: 为什么用_id_作为_key_反而报错？Uniapp_微信小程序
 published: 2026-04-02
 tags: [小程序, Debug]
 category: 前端

@@ -1,5 +1,6 @@
 ---
 title: 如何用 Recast 实现静态配置文件源码级读写
+permalink: 如何用_Recast_实现静态配置文件源码级读写
 published: 2026-05-10
 tags: [Recast, Nodejs]
 category: 前端

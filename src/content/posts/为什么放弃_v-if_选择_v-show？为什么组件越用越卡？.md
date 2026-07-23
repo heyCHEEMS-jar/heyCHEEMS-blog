@@ -1,5 +1,6 @@
 ---
 title: 为什么放弃 v-if 选择 v-show？为什么组件越用越卡？
+permalink: 为什么放弃_v-if_选择_v-show？为什么组件越用越卡？
 published: 2026-01-02
 tags: [小程序, Debug]
 category: 前端

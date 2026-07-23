@@ -1,5 +1,6 @@
 ---
 title: React 为什么刷新页面，异步加载的本地缓存会被清空？
+permalink: React_为什么刷新页面，异步加载的本地缓存会被清空？
 published: 2026-05-03
 tags: [React, Debug]
 category: 前端

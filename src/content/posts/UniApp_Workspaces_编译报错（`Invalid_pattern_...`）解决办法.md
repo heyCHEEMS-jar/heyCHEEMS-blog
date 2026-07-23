@@ -1,5 +1,6 @@
 ---
 title: UniApp Workspaces 编译报错（Invalid pattern ...）解决办法
+permalink: UniApp_Workspaces_编译报错（Invalid_pattern_...）解决办法
 published: 2026-01-02
 tags: [小程序, 编译, Debug]
 category: 前端

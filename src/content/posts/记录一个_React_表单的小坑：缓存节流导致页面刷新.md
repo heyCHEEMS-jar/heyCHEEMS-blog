@@ -1,5 +1,6 @@
 ---
 title: 记录一个 React 表单的小坑：缓存节流导致页面刷新
+permalink: 记录一个_React_表单的小坑：缓存节流导致页面刷新
 published: 2026-05-10
 tags: [React]
 category: 前端
@@ -84,7 +85,7 @@ useMemo 保证 throttledSubmit 在整个组件生命周期中只有一个实例�
 
 第一次点击：
 
-```scss
+```jsx
 用户点击 → 表单 onSubmit → throttledSubmit(e) 执行
 → timer === null，通过检查
 → 执行 handleSubmit(e)
@@ -95,7 +96,7 @@ useMemo 保证 throttledSubmit 在整个组件生命周期中只有一个实例�
 
 第二次点击（2秒内）：
 
-```kotlin
+```jsx
 用户点击 → 表单 onSubmit → throttledSubmit(e) 执行
 → timer !== null，直接 return
 → handleSubmit 根本没进去

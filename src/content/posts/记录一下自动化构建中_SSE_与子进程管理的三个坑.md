@@ -1,7 +1,8 @@
 ---
 title: 记录一下自动化构建中 SSE 与子进程管理的三个坑
+permalink: 记录一下自动化构建中_SSE_与子进程管理的三个坑
 published: 2026-05-02
-tags: [SSE, Nodejs, 构建部署]
+tags: [SSE, Nodejs]
 category: 前端
 licenseName: "CC BY 4.0"
 draft: false
