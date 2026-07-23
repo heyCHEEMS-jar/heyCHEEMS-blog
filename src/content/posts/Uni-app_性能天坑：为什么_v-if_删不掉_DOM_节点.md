@@ -1,5 +1,6 @@
 ---
 title: Uni-app 性能天坑：为什么 v-if 删不掉 DOM 节点
+permalink: Uni-app_性能天坑：为什么_v-if_删不掉_DOM_节点
 published: 2026-01-02
 tags: [小程序, 编译, Debug]
 category: 前端

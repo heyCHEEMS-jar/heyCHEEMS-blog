@@ -1,5 +1,6 @@
 ---
 title: 手搓 uniapp vue3 虚拟列表遇到的坑
+permalink: 手搓_uniapp_vue3_虚拟列表遇到的坑
 published: 2026-01-02
 tags: [小程序, 组件]
 category: 前端
