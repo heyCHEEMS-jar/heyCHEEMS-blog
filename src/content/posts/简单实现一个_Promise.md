@@ -1,7 +1,7 @@
 ---
-title: 理解 Promise 的实现
-permalink: 理解_Promise_的实现
-published: 2026-07-05
+title: 简单实现一个 Promise
+permalink: 简单实现一个_Promise
+published: 2026-03-05
 tags: [JavaScript]
 category: 前端
 licenseName: "CC BY 4.0"
@@ -15,14 +15,15 @@ date: 2026-07-05
 
 ```javascript
 const FULFILLED = 'fulfilled'
-const REJECTED = 'rejected'
 const PENDING = 'pending'
+const REJECTED = 'rejected'
 
 class myPromise {
   #status = PENDING
   #value = undefined
   #reason = undefined
   #callbacks = []
+
   constructor(executor) {
     const resolve = (value) => {
       if (this.#status === PENDING) {
@@ -44,8 +45,9 @@ class myPromise {
       reject(err)
     }
   }
+
   then(onFulfilled, onRejected) {
-    // 值透传
+    // 透传值，确保多个传入非函数类型回调的then能够接连传递前面的有效值
     onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : (value) => value
     onRejected =
       typeof onRejected === 'function'
@@ -55,29 +57,32 @@ class myPromise {
           }
 
     return new myPromise((resolve, reject) => {
-      const handle = (callback) => {
+      const handle = (callback, value) => {
         try {
-          const result = callback(this.#status === FULFILLED ? this.#value : this.#reason)
-          result instanceof myPromise ? result.then(resolve, reject) : resolve(result) // 结果是promise则继续执行then，否则直接resolve
+          const result = callback(value)
+          // 结果是promise则继续执行then，否则直接resolve
+          result instanceof myPromise ? result.then(resolve, reject) : resolve(result)
         } catch (err) {
           reject(err)
         }
       }
       if (this.#status === FULFILLED) {
-        queueMicrotask(() => handle(onFulfilled))
+        queueMicrotask(() => handle(onFulfilled, this.#value))
       } else if (this.#status === REJECTED) {
-        queueMicrotask(() => handle(onRejected))
+        queueMicrotask(() => handle(onRejected, this.#reason))
       } else {
         this.#callbacks.push({
-          onFulfilled: () => handle(onFulfilled),
-          onRejected: () => handle(onRejected)
+          onFulfilled: (value) => handle(onFulfilled, value),
+          onRejected: (reason) => handle(onRejected, reason)
         })
       }
     })
   }
+
   catch(onRejected) {
     return this.then(undefined, onRejected)
   }
+
   finally(onFinally) {
     return this.then(
       (value) => {
@@ -110,6 +115,29 @@ p.then((v) => console.log('c:', v))
 
 
 状态结束时执行回调包裹 `queueMicrotask` 确保是异步执行的，例如执行一个直接 `resolve` 的 `Promise`，原生的 `Promise` 行为应该确保回调在下一轮微任务执行，而非立即同步执行。
+
+------
+
+## Promise.resolve
+
+```javascript
+static resolve(value) {
+  if (value instanceof myPromise) {
+    return value
+  }
+  return new myPromise((resolve) => resolve(value))
+}
+```
+
+------
+
+## Promise.reject
+
+```javascript
+static reject(reason) {
+  return new myPromise((_, reject) => reject(reason))
+}
+```
 
 ------
 

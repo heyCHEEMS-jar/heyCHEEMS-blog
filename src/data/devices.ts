@@ -14,20 +14,28 @@ export type DeviceCategory = Record<string, Device[]> & {
 }
 
 export const devicesData: DeviceCategory = {
+  路由器: [{
+    name: 'Xiaomi AX3000T',
+    specs: '联发科Filogic 820 双核1.3GHz',
+    image: '/images/device/ax3000t.jpg',
+    link: 'https://www.mi.com/xiaomi-ax3000t',
+    description: 'WIFI6 2.4G/5G双频段 入门级路由器，稳定配置够用。'
+  }],
+
   PC: [{
-    name: '组装主机 2',
+    name: 'R5 5600x + Geforce GTX 1660 Ti',
     specs: 'R5 5600x + Geforce GTX 1660 Ti',
     image: '/images/device/2505503-ryzen-5-5600x.png',
     link: 'https://www.amd.com/zh-cn/products/processors/desktops/ryzen/5000-series/amd-ryzen-5-5600x.html',
     description: 'CPU：R5 5600X | GPU：GTX 1660 Ti 6G | 显存利用率：1080P满配不溢出 | 整机功耗：<300W'
   }, {
-    name: '组装主机 3',
+    name: 'R5 5600 + Radeon RX 6650 XT',
     specs: 'R5 5600 + Radeon RX 6650 XT',
     image: '/images/device/cev9x0pj3mLcc.jpg',
     link: 'https://www.amd.com/zh-cn/products/graphics/desktops/radeon/6000-series/amd-radeon-rx-6650-xt.html',
     description: 'CPU：R5 5600 | GPU：RX 6650 XT | 散热：120水冷（纯装饰） | 内存：16G | 硬盘：1TB | 电源：550W带300W出头整机'
   }, {
-    name: '组装主机 1',
+    name: 'R5 5600x + Geforce GTX 970',
     specs: 'R5 5600x + Geforce GTX 970',
     image: '/images/device/ryzen-5-5600x.png',
     link: 'https://www.amd.com/zh-cn/products/processors/desktops/ryzen/5000-series/amd-ryzen-5-5600x.html',
@@ -35,7 +43,7 @@ export const devicesData: DeviceCategory = {
   }],
 
   服务器: [{
-    name: '服务器主机',
+    name: 'R7 7700 + 16G DDR5 5600 + 三星860EVO 500G',
     specs: 'R7 7700 + 16G DDR5 5600 + 三星860EVO 500G',
     image: '/images/device/2505503-ryzen-7-7700.png',
     link: 'https://www.amd.com/zh-cn/products/processors/desktops/ryzen/7000-series/amd-ryzen-7-7700.html',
