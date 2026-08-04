@@ -1,16 +1,21 @@
 ---
-title: Java 常用算法模板备忘整理
-permalink: Java_常用算法模板备忘整理
-published: 2026-06-04
-tags: [Java]
-category: 算法
+title: 常用算法模板 Java/JS
+permalink: 常用算法模板_Java/JS
+published: 2026-02-04
+tags: [Java, JavaScript]
+category: 数据结构与算法
 licenseName: "CC BY 4.0"
 draft: false
-date: 2026-06-04
+date: 2026-02-04
 ---
 
+更新于 2026.7.24
+
 ## 快速排序
-``` java
+
+Java
+
+```java
 static void quickSort(int[] arr, int l, int r) {
     if (l >= r) return;
     int left = l, right = r, pivot = arr[l];
@@ -31,9 +36,30 @@ static void swap(int[] arr, int i, int j) {
 }
 ```
 
+<br>
+
+JavaScript
+
+```javascript
+const quickSort = (arr, l, r) => {
+    if (l >= r) return
+    const left = l, right = r, pivot = arr[l]
+    while (l < r) {
+        while (l < r && arr[r] >= pivot) r--
+        while (l < r && arr[l] <= pivot) l++
+        if (l < r) [arr[l], arr[r]] = [arr[r], arr[l]]
+    }
+    [arr[left], arr[l]] = [arr[l], arr[left]]
+    quickSort(arr, left, l - 1)
+    quickSort(arr, l + 1, right)
+}
+```
+
 ## 归并排序
 
-``` java
+Java
+
+```java
 // 归并排序数组的[l, r)区间
 static void mergeSort(int[] arr, int l, int r) {
     if (r - l <= 1) return; // 一直拆分到只剩最后一个元素
@@ -59,6 +85,35 @@ static void merge(int[] arr, int l, int r) {
     while (i < mid) tmp[k++] = arr[i++];
     while (j < r) tmp[k++] = arr[j++];
     System.arraycopy(tmp, 0, arr, l, tmp.length);
+}
+```
+
+<br>
+
+JavaScript
+
+```javascript
+const mergeSort = (arr, l, r) => {
+  if (r - l <= 1) return
+  const mid = Math.floor(l + (r - l) / 2)
+  mergeSort(arr, l, mid)
+  mergeSort(arr, mid, r)
+  merge(arr, l, r)
+}
+const merge = (arr, l, r) => {
+  const tmp = []
+  const mid = Math.floor(l + (r - l) / 2)
+  let i = l, j = mid
+  while (i < mid && j < r) {
+    if (arr[i] < arr[j]) {
+        tmp.push(arr[i++])
+    } else {
+        tmp.push(arr[j++])
+    }
+  }
+  while (i < mid) tmp.push(arr[i++])
+  while (j < r) tmp.push(arr[j++])
+  arr.splice(l, tmp.length, ...tmp)
 }
 ```
 

@@ -2,7 +2,6 @@
 title: The Eminence in Shadow | SCOPIN [Edit/AMV]
 permalink: The_Eminence_in_Shadow
 published: 2026-03-22
-description: 不愧是虾抖撒麻
 tags: [AMV, Edit]
 category: AE
 licenseName: "CC BY 4.0"
