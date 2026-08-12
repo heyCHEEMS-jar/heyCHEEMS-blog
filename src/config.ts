@@ -631,7 +631,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
     animationDelay: 0
   }, {
     type: 'announcement',
-    position: 'sticky',
+    position: 'top',
     class: 'onload-animation',
     animationDelay: 50
   }, {
