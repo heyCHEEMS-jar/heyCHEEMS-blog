@@ -1,12 +1,12 @@
 ---
 title: Docker 常用命令
 permalink: Docker_常用命令
-published: 2025-06-16
+published: 2024-06-16
 tags: [Docker]
 category: 部署
 licenseName: "CC BY 4.0"
 draft: false
-date: 2025-06-16
+date: 2024-06-16
 ---
 
 ## 镜像操作

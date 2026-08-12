@@ -1,12 +1,12 @@
 ---
 title: UniApp Workspaces 编译报错（Invalid pattern ...）解决办法
 permalink: UniApp_Workspaces_编译报错（Invalid_pattern_...）解决办法
-published: 2026-01-02
+published: 2025-01-02
 tags: [小程序, 编译, Debug]
 category: 前端
 licenseName: "CC BY 4.0"
 draft: false
-date: 2026-01-02
+date: 2025-01-02
 ---
 
 ## 问题
