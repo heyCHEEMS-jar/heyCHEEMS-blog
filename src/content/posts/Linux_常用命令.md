@@ -1,12 +1,12 @@
 ---
 title: Linux 常用命令
 permalink: Linux_常用命令
-published: 2025-06-22
-tags: [Docker]
+published: 2024-06-22
+tags: [Linux]
 category: 操作系统
 licenseName: "CC BY 4.0"
 draft: false
-date: 2025-06-22
+date: 2024-06-22
 
 ---
 

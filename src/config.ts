@@ -25,7 +25,7 @@ const SITE_LANG = 'zh_CN' // 语言代码，例如：'en', 'zh_CN', 'ja' 等。
 const SITE_TIMEZONE = 8 //设置你的网站时区 from -12 to 12 default in UTC+8
 export const siteConfig: SiteConfig = {
   title: 'CHEEMS的小窝',
-  subtitle: '一个简单的Blog站点',
+  subtitle: '咕咕嘎嘎',
 
   // 请替换为你的站点URL，以斜杠结尾
   siteURL: 'http://mizuki.heycheems.top/',
@@ -114,11 +114,11 @@ export const siteConfig: SiteConfig = {
     coverMirror: '',
 
     /*是否使用WebP格式（默认 true）
-                                                    bilibili 观看进度配置说明(可选，如需配置仔细阅读):
-                                                    1. 本地开发：请在 .env 文件中填写 BILI_SESSDATA=your_SESSDATA
-                                                    2. 远程构建：请在 GitHub 仓库 Settings -> Secrets 中添加 BILI_SESSDATA
-                                                    注意：SESSDATA 为账号凭证，为防止泄露，切记不可使用硬编码。
-                                                    安全提示：如 SESSDATA 已泄露，请打开 B站手机端 —— 我的 —— 设置 —— 安全隐私 —— 登陆设备管理 —— 一键退登，销毁已泄露的账号凭证*/
+                                                                bilibili 观看进度配置说明(可选，如需配置仔细阅读):
+                                                                1. 本地开发：请在 .env 文件中填写 BILI_SESSDATA=your_SESSDATA
+                                                                2. 远程构建：请在 GitHub 仓库 Settings -> Secrets 中添加 BILI_SESSDATA
+                                                                注意：SESSDATA 为账号凭证，为防止泄露，切记不可使用硬编码。
+                                                                安全提示：如 SESSDATA 已泄露，请打开 B站手机端 —— 我的 —— 设置 —— 安全隐私 —— 登陆设备管理 —— 一键退登，销毁已泄露的账号凭证*/
     useWebp: true
   },
 
@@ -130,7 +130,7 @@ export const siteConfig: SiteConfig = {
   // 文章列表布局配置
   postListLayout: {
     /*默认布局模式："list" 列表模式（单列布局），"grid" 网格模式（双列布局）
-                                                    注意：如果侧边栏配置启用了"both"双侧边栏，则无法使用文章列表"grid"网格（双列）布局*/
+                                                                注意：如果侧边栏配置启用了"both"双侧边栏，则无法使用文章列表"grid"网格（双列）布局*/
     defaultMode: 'list',
 
     // 是否允许用户切换布局
@@ -155,29 +155,27 @@ export const siteConfig: SiteConfig = {
     defaultMode: 'banner',
 
     /*整体布局方案切换按钮显示设置（默认："desktop"）
-                                                    "off" = 不显示
-                                                    "mobile" = 仅在移动端显示
-                                                    "desktop" = 仅在桌面端显示
-                                                    "both" = 在所有设备上显示*/
+                                                                "off" = 不显示
+                                                                "mobile" = 仅在移动端显示
+                                                                "desktop" = 仅在桌面端显示
+                                                                "both" = 在所有设备上显示*/
     showModeSwitchOnMobile: 'desktop'
   },
 
   banner: {
     /*支持单张图片或图片数组，当数组长度 > 1 时自动启用轮播
-                                                    使用本地横幅图片*/
+                                                                使用本地横幅图片*/
     src: {
       desktop: [
-        '/assets/desktop-banner/2.webp',
-        '/assets/desktop-banner/3.webp',
-        '/assets/desktop-banner/1.webp',
-        '/assets/desktop-banner/4.webp'
+        '/assets/desktop-banner/傍晚路灯-山脉-水面.webp',
+        '/assets/desktop-banner/咖啡店-小白-日落.webp',
+        '/assets/desktop-banner/小白-日落-木栈道.webp'
       ],
 
       mobile: [
-        '/assets/mobile-banner/1.webp',
-        '/assets/mobile-banner/2.webp',
-        '/assets/mobile-banner/3.webp',
-        '/assets/mobile-banner/4.webp'
+        '/assets/mobile-banner/傍晚路灯-山脉-水面.webp',
+        '/assets/mobile-banner/咖啡店-小白-日落.webp',
+        '/assets/mobile-banner/小白-日落-木栈道.webp'
       ]
     },
 
@@ -213,8 +211,8 @@ export const siteConfig: SiteConfig = {
     },
 
     /*这里需要使用PicFlow API的Text返回类型,所以我们需要format=text参数
-                                                    项目地址:https://github.com/matsuzaka-yuki/PicFlow-API
-                                                    请自行搭建API*/
+                                                                项目地址:https://github.com/matsuzaka-yuki/PicFlow-API
+                                                                请自行搭建API*/
     homeText: {
       // 在主页显示自定义文本
       enable: true,
@@ -287,10 +285,10 @@ export const siteConfig: SiteConfig = {
   // 字体配置
   font: {
     /*注意：自定义字体需要在 src/styles/main.css 中引入字体文件
-                                                    注意：字体子集优化功能目前仅支持 TTF 格式字体,开启后需要在生产环境才能看到效果,在Dev环境下显示的是浏览器默认字体!*/
+                                                                注意：字体子集优化功能目前仅支持 TTF 格式字体,开启后需要在生产环境才能看到效果,在Dev环境下显示的是浏览器默认字体!*/
     asciiFont: {
       /*英文字体 - 优先级最高
-                                                                              指定为英文字体则无论字体包含多大范围，都只会保留 ASCII 字符子集*/
+                                                                                                指定为英文字体则无论字体包含多大范围，都只会保留 ASCII 字符子集*/
       fontFamily: 'ZenMaruGothic-Medium',
 
       fontWeight: '400',
@@ -338,17 +336,15 @@ export const fullscreenWallpaperConfig: FullscreenWallpaperConfig = {
   // 使用本地横幅图片
   src: {
     desktop: [
-      '/assets/desktop-banner/1.webp',
-      '/assets/desktop-banner/2.webp',
-      '/assets/desktop-banner/3.webp',
-      '/assets/desktop-banner/4.webp'
+      '/assets/desktop-banner/傍晚路灯-山脉-水面.webp',
+      '/assets/desktop-banner/咖啡店-小白-日落.webp',
+      '/assets/desktop-banner/小白-日落-木栈道.webp'
     ],
 
     mobile: [
-      '/assets/mobile-banner/1.webp',
-      '/assets/mobile-banner/2.webp',
-      '/assets/mobile-banner/3.webp',
-      '/assets/mobile-banner/4.webp'
+      '/assets/mobile-banner/傍晚路灯-山脉-水面.webp',
+      '/assets/mobile-banner/咖啡店-小白-日落.webp',
+      '/assets/mobile-banner/小白-日落-木栈道.webp'
     ]
   },
 
@@ -385,11 +381,6 @@ export const navBarConfig: NavBarConfig = {
       url: 'https://github.com/2126340634',
       external: true
     }, {
-      name: 'Bilibili',
-      icon: 'fa7-brands:bilibili',
-      url: 'https://space.bilibili.com/305721009',
-      external: true
-    }, {
       name: 'Gitee',
       icon: 'mdi:git',
       url: 'https://gitee.com/heyCHEEMS_jar',
@@ -398,11 +389,6 @@ export const navBarConfig: NavBarConfig = {
       name: '掘金',
       icon: 'simple-icons:juejin',
       url: 'https://juejin.cn/user/4308367489378780',
-      external: true
-    }, {
-      name: 'Steam',
-      icon: 'mdi:steam',
-      url: 'https://steamcommunity.com/profiles/76561199375981521',
       external: true
     }]
   }, {
@@ -468,7 +454,7 @@ export const profileConfig: ProfileConfig = {
   avatar: '/images/albums/Avatar/CHEEMS.jpg',
 
   name: 'heyCHEEMS',
-  bio: 'EL PSY CONGROO 欢迎来到CHEEMS的小窝~',
+  bio: '欢迎来到CHEEMS的小窝~',
 
   typewriter: {
     // 启用个人简介打字机效果
@@ -505,32 +491,32 @@ export const permalinkConfig: PermalinkConfig = {
   enable: false,
 
   /*permalink 格式模板
-                          支持的占位符：
-                          - %year% : 4位年份 (2024)
-                          - %monthnum% : 2位月份 (01-12)
-                          - %day% : 2位日期 (01-31)
-                          - %hour% : 2位小时 (00-23)
-                          - %minute% : 2位分钟 (00-59)
-                          - %second% : 2位秒数 (00-59)
-                          - %post_id% : 文章序号（按发布时间升序排列，最早的文章为1）
-                          - %postname% : 文章文件名（slug，通常为全小写）
-                          - %raw_postname% : 文章原始文件名（保留大小写）
-                          - %category% : 分类名（无分类时为 "uncategorized"）
+                                支持的占位符：
+                                - %year% : 4位年份 (2024)
+                                - %monthnum% : 2位月份 (01-12)
+                                - %day% : 2位日期 (01-31)
+                                - %hour% : 2位小时 (00-23)
+                                - %minute% : 2位分钟 (00-59)
+                                - %second% : 2位秒数 (00-59)
+                                - %post_id% : 文章序号（按发布时间升序排列，最早的文章为1）
+                                - %postname% : 文章文件名（slug，通常为全小写）
+                                - %raw_postname% : 文章原始文件名（保留大小写）
+                                - %category% : 分类名（无分类时为 "uncategorized"）
 
-                          示例：
-                          - "%year%-%monthnum%-%postname%" => "/2024-12-my-post/"
-                          - "%post_id%-%postname%" => "/42-my-post/"
-                          - "%category%-%postname%" => "/tech-my-post/"
-                          - "%year%/%monthnum%/%day%/%postname%" => "/2024/12/01/my-post/"
+                                示例：
+                                - "%year%-%monthnum%-%postname%" => "/2024-12-my-post/"
+                                - "%post_id%-%postname%" => "/42-my-post/"
+                                - "%category%-%postname%" => "/tech-my-post/"
+                                - "%year%/%monthnum%/%day%/%postname%" => "/2024/12/01/my-post/"
 
-                          注意：支持使用斜杠 "/" 构建嵌套路径。
-                          默认使用文件名*/
+                                注意：支持使用斜杠 "/" 构建嵌套路径。
+                                默认使用文件名*/
   format: '%postname%'
 }
 
 export const expressiveCodeConfig: ExpressiveCodeConfig = {
   /*注意：某些样式（如背景颜色）已被覆盖，请参阅 astro.config.mjs 文件。
-                          请选择深色主题，因为此博客主题目前仅支持深色背景*/
+                                请选择深色主题，因为此博客主题目前仅支持深色背景*/
   theme: 'github-dark',
 
   // 是否在主题切换时隐藏代码块以避免卡顿问题
@@ -626,9 +612,9 @@ export const footerConfig: FooterConfig = {
   enable: true,
 
   /*HTML格式的自定义页脚信息，例如备案号等，默认留空
-                          也可以直接编辑 FooterConfig.html 文件来添加备案号等自定义内容
-                          注意：若 customHtml 不为空，则使用 customHtml 中的内容；若 customHtml 留空，则使用 FooterConfig.html 文件中的内容
-                          FooterConfig.html 可能会在未来的某个版本弃用*/
+                                也可以直接编辑 FooterConfig.html 文件来添加备案号等自定义内容
+                                注意：若 customHtml 不为空，则使用 customHtml 中的内容；若 customHtml 留空，则使用 FooterConfig.html 文件中的内容
+                                FooterConfig.html 可能会在未来的某个版本弃用*/
   customHtml: '闽ICP备2026018056号-1 | 闽公网安备35080202351548号'
 }
 
@@ -645,7 +631,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
     animationDelay: 0
   }, {
     type: 'announcement',
-    position: 'top',
+    position: 'sticky',
     class: 'onload-animation',
     animationDelay: 50
   }, {
@@ -664,7 +650,7 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
     }
   }, {
     type: 'tags',
-    position: 'top',
+    position: 'sticky',
     class: 'onload-animation',
     animationDelay: 250,
 
@@ -683,12 +669,12 @@ export const sidebarLayoutConfig: SidebarLayoutConfig = {
     animationDelay: 200
   }, {
     type: 'calendar',
-    position: 'top',
+    position: 'sticky',
     class: 'onload-animation',
     animationDelay: 250
   }, {
     type: 'umami',
-    position: 'top',
+    position: 'sticky',
     class: 'onload-animation',
     animationDelay: 250
   }],

@@ -1,12 +1,12 @@
 ---
-title: 快速理解 Agent 原理，什么是 Agent？
-permalink: 快速理解_Agent_原理，什么是_Agent？
-published: 2026-03-24
+title: 什么是 Agent？
+permalink: 什么是_Agent？
+published: 2025-08-24
 tags: [LLM, Agent]
 category: AI
 licenseName: "CC BY 4.0"
 draft: false
-date: 2026-03-24
+date: 2025-08-24
 ---
 
 # 什么是 Agent？

@@ -9,7 +9,7 @@ draft: false
 date: 2026-03-25
 ---
 
-更新于 2026.7.31
+更新于 2026.8.7
 
 ## 柯里化
 
@@ -314,6 +314,91 @@ class UndoRedo {
     if (!this.redoStack.length) return
     this.undoStack.push(this.cur)
     this.cur = this.redoStack.pop()
+  }
+}
+```
+
+## LRU Cache
+
+普通 Map 实现：
+
+```javascript
+class LRUCache {
+  constructor(maxSize) {
+    this.maxSize = maxSize
+    this.map = new Map()
+  }
+  get(key) {
+    if (!this.map.has(key)) return -1
+    const value = this.map.get(key)
+    this.map.delete(key)
+    this.map.set(key, value)
+    return value
+  }
+  set(key, value) {
+    if (this.map.has(key)) {
+      this.map.delete(key)
+    }
+    if (this.map.size >= this.maxSize) {
+      const firstKey = this.map.keys().next().value
+      this.map.delete(firstKey)
+    }
+    this.map.set(key, value)
+  }
+}
+```
+
+双向链表实现：
+
+```javascript
+class Node {
+  constructor(key, value) {
+    this.key = key
+    this.value = value
+    this.prev = null
+    this.next = null
+  }
+}
+
+class LRUCache {
+  constructor(maxSize) {
+    this.maxSize = maxSize
+    this.map = new Map()
+    this.head = new Node(null, null) // 虚拟头节点，方便操作
+    this.tail = new Node(null, null) // 虚拟尾节点，方便操作
+    this.head.next = this.tail
+    this.tail.prev = this.head
+  }
+  _delete(node) {
+    node.prev.next = node.next
+    node.next.prev = node.prev
+  }
+  _insertToHead(node) {
+    node.next = this.head.next
+    node.prev = this.head
+    this.head.next.prev = node
+    this.head.next = node
+  }
+  get(key) {
+    if (!this.map.has(key)) return -1
+    const node = this.map.get(key)
+    this._delete(node)
+    this._insertToHead(node)
+    return node.value
+  }
+  set(key, value) {
+    if (this.map.has(key)) {
+      this._delete(this.map.get(key))
+      this.map.delete(key)
+    }
+    if (this.map.size >= this.maxSize) {
+      const tailNode = this.tail.prev // 最旧的尾部节点
+      this._delete(tailNode)
+      this.map.delete(tailNode.key)
+    }
+    const node = new Node(key, value)
+    this._insertToHead(node)
+    this.map.set(key, node)
   }
 }
 ```
