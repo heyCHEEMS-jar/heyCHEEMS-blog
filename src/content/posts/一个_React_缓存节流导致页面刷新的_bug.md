@@ -1,8 +1,8 @@
 ---
-title: 记录一个 React 表单的小坑：缓存节流导致页面刷新
-permalink: 记录一个_React_表单的小坑：缓存节流导致页面刷新
+title: 一个 React 缓存节流导致页面刷新的 bug
+permalink: 一个_React_缓存节流导致页面刷新的_bug
 published: 2026-05-10
-tags: [React]
+tags: [React, Debug]
 category: 前端
 licenseName: "CC BY 4.0"
 draft: false
