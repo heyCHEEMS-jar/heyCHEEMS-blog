@@ -7,7 +7,7 @@ demo
 plans
 # dependencies
 node_modules/
-.vscode
+.vscode/
 
 # logs
 npm-debug.log*
