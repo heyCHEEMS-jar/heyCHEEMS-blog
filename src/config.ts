@@ -289,10 +289,10 @@ export const siteConfig: SiteConfig = {
     asciiFont: {
       /*英文字体 - 优先级最高
                                                                                                                                                             指定为英文字体则无论字体包含多大范围，都只会保留 ASCII 字符子集*/
-      fontFamily: 'ZenMaruGothic-Medium',
+      fontFamily: 'system-ui',
 
       fontWeight: '400',
-      localFonts: ['ZenMaruGothic-Medium.ttf'],
+      localFonts: [],
 
       // 启用字体子集优化，减少字体文件大小
       enableCompress: true
@@ -300,10 +300,10 @@ export const siteConfig: SiteConfig = {
 
     cjkFont: {
       // 中日韩字体 - 作为回退字体
-      fontFamily: '萝莉体 第二版',
+      fontFamily: 'system-ui',
 
-      fontWeight: '500',
-      localFonts: ['loli.ttf'],
+      fontWeight: '400',
+      localFonts: [],
 
       // 启用字体子集优化，减少字体文件大小
       enableCompress: true

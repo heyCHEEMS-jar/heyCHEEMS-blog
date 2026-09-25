@@ -19,28 +19,11 @@
 
 /* Migrate from v3 config */
 @theme {
-	--font-sans: 'Roboto', 'sans-serif', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+	--font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans CJK SC', sans-serif;
 
 	--breakpoint-md: 768px;
 	--breakpoint-lg: 1280px;
 	--breakpoint-xl: 1920px;
-}
-
-/* 导入 ZenMaruGothic-Medium 字体 */
-@font-face {
-	font-family: 'ZenMaruGothic-Medium';
-	src: url('/assets/font/ZenMaruGothic-Medium.ttf') format('truetype');
-	font-weight: 500;
-	font-display: swap;
-}
-
-/* 导入 萝莉体 第二版 字体 */
-@font-face {
-	font-family: '萝莉体 第二版';
-	src: url('/assets/font/loli.ttf') format('truetype');
-	font-style: normal;
-	font-weight: 400;
-	font-display: swap;
 }
 
 /* 确保平滑滚动，并稳定滚动条宽度以避免布局左右抖动 */
