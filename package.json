@@ -38,8 +38,6 @@
 		"@expressive-code/plugin-collapsible-sections": "^0.41.7",
 		"@expressive-code/plugin-line-numbers": "^0.41.7",
 		"@fancyapps/ui": "^6.1.12",
-		"@fontsource-variable/jetbrains-mono": "^5.2.8",
-		"@fontsource/roboto": "^5.2.10",
 		"@iconify/svelte": "^5.2.1",
 		"@swup/astro": "^1.8.0",
 		"@tailwindcss/typography": "^0.5.15",

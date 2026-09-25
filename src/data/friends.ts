@@ -12,6 +12,13 @@ export interface FriendItem {
 
 // 友情链接数据
 export const friendsData: FriendItem[] = [{
+  id: 1786993578768,
+  title: 'Mizuki',
+  siteurl: 'https://mizuki.mysqil.com/',
+  imgurl: 'https://mizuki.mysqil.com/_astro/avatar.DodcwRNI_ZrnMU5.webp',
+  desc: '下一代Material Design 3 博客主题(Astro驱动)',
+  tags: ['博客', 'Astro']
+}, {
   id: 1782808872189,
   title: '403Bug\'s Blog',
   siteurl: 'https://403bug.top/',
