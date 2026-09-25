@@ -22,26 +22,6 @@ export const devicesData: DeviceCategory = {
     description: 'WIFI6 2.4G/5G双频段 入门级路由器，稳定配置够用。'
   }],
 
-  PC: [{
-    name: 'R5 5600x + Geforce GTX 1660 Ti',
-    specs: 'R5 5600x + Geforce GTX 1660 Ti',
-    image: '/images/device/2505503-ryzen-5-5600x.png',
-    link: 'https://www.amd.com/zh-cn/products/processors/desktops/ryzen/5000-series/amd-ryzen-5-5600x.html',
-    description: 'CPU：R5 5600X | GPU：GTX 1660 Ti 6G | 显存利用率：1080P满配不溢出 | 整机功耗：<300W'
-  }, {
-    name: 'R5 5600 + Radeon RX 6650 XT',
-    specs: 'R5 5600 + Radeon RX 6650 XT',
-    image: '/images/device/cev9x0pj3mLcc.jpg',
-    link: 'https://www.amd.com/zh-cn/products/graphics/desktops/radeon/6000-series/amd-radeon-rx-6650-xt.html',
-    description: 'CPU：R5 5600 | GPU：RX 6650 XT | 散热：120水冷（纯装饰） | 内存：16G | 硬盘：1TB | 电源：550W带300W出头整机'
-  }, {
-    name: 'R5 5600x + Geforce GTX 970',
-    specs: 'R5 5600x + Geforce GTX 970',
-    image: '/images/device/ryzen-5-5600x.png',
-    link: 'https://www.amd.com/zh-cn/products/processors/desktops/ryzen/5000-series/amd-ryzen-5-5600x.html',
-    description: 'CPU：R5 5600X | 显卡：GTX 970（过渡，当年溢价严重） | 散热：单塔风冷（绰绰有余） | 电源：500W'
-  }],
-
   服务器: [{
     name: 'R7 7700 + 16G DDR5 5600 + 三星860EVO 500G',
     specs: 'R7 7700 + 16G DDR5 5600 + 三星860EVO 500G',
@@ -72,7 +52,7 @@ export const devicesData: DeviceCategory = {
     description: '2022年水桶机，12700H+满血3060通吃1080P，可惜单硬盘位+无直连切换。'
   }],
 
-  IQOO: [{
+  Mobile: [{
     name: 'IQOO 12',
     specs: '12GB + 256GB',
     image: '/images/device/iqoo12.png',
